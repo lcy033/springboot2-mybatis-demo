@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <jmxConfigurator/>
+
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+
+    <!-- 需要配置的日志 -->
+    <logger name="com.example" level="DEBUG" additivity="true"/>
+    <logger name="com.mysql" level="INFO" />
+    <logger name="java.sql" level="INFO" />
+
+</configuration>

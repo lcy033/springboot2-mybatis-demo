@@ -33,7 +33,6 @@ gen
 .project
 .settings/
 
-
 springboot2-mybatis-demo/.classpath
 springboot2-mybatis-demo/.project
 springboot2-mybatis-demo/.settings/

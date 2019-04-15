@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DemoApplication {
 
+	/**
+	 * 启动文件
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}

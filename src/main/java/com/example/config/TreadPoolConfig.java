@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 import java.util.concurrent.*;
 
@@ -12,6 +13,7 @@ import java.util.concurrent.*;
  * Created by finup on 2018/12/21. 线程池
  */
 @Configuration
+@EnableAsync
 public class TreadPoolConfig {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TreadPoolConfig.class);

@@ -1,12 +1,15 @@
 package com.example.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.model.GspMenu;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 /**
  * Created by finup on 2018/12/10.
  */
-public interface GspMenuMapper {
+@Mapper
+public interface GspMenuMapper extends BaseMapper<GspMenu>{
 
     /**
      * 查询

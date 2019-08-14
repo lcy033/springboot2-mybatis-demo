@@ -2,6 +2,10 @@ package com.example.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 import java.io.Serializable;
@@ -11,6 +15,10 @@ import java.util.Date;
  * Created by finup on 2018/12/10.
  */
 @ApiModel("测试vo")
+@Data
+@Setter
+@Getter
+@ToString
 public class GspMenu implements Serializable {
 
     @ApiModelProperty(value = "id", required = true)
@@ -37,72 +45,4 @@ public class GspMenu implements Serializable {
     @ApiModelProperty(value = "更新时间")
     private Date updateTime;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getMenuName() {
-        return menuName;
-    }
-
-    public void setMenuName(String menuName) {
-        this.menuName = menuName;
-    }
-
-    public String getMenuUrl() {
-        return menuUrl;
-    }
-
-    public void setMenuUrl(String menuUrl) {
-        this.menuUrl = menuUrl;
-    }
-
-    public Integer getMenuFatherId() {
-        return menuFatherId;
-    }
-
-    public void setMenuFatherId(Integer menuFatherId) {
-        this.menuFatherId = menuFatherId;
-    }
-
-    public String getMenuDesc() {
-        return menuDesc;
-    }
-
-    public void setMenuDesc(String menuDesc) {
-        this.menuDesc = menuDesc;
-    }
-
-    public Boolean getEnable() {
-        return enable;
-    }
-
-    public void setEnable(Boolean enable) {
-        this.enable = enable;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    @Override
-    public String toString() {
-        return ReflectionToStringBuilder.toString(this);
-    }
 }

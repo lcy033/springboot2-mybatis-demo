@@ -8,6 +8,8 @@ import com.example.model.GspMenu;
 import com.example.utils.FileUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,8 +24,13 @@ import java.net.URL;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@Slf4j
 public class FileTests {
 
+	@Autowired
+	private GspMenuMapper gspMenuMapper;
 
 	@Test
 	public void contextLoads() {
@@ -95,6 +102,12 @@ public class FileTests {
 		}catch (Exception e){
 			System.out.println(e);
 		}
+	}
+
+	@Test
+	public void testMybatisPlus(){
+		List<GspMenu> list = gspMenuMapper.selectList(null);
+		log.info("结果：{}", list);
 	}
 
 	public static void main(String[] args) {

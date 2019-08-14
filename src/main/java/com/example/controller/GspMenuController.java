@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/api/gsp")
-@Api(description = "测试1", tags = "01.gsp")
+@Api(tags = "01.gsp测试1")
 public class GspMenuController {
 
     @Autowired

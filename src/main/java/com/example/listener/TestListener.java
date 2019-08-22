@@ -30,12 +30,12 @@ public class TestListener {
         if (remainSize == 1) {
             return (double) Math.round(remainMoney * 100) / 100;
         }
-        Random r     = new Random();
-        double min   = 0.01; //
-        double max   = remainMoney / remainSize * 2;
-        double money = r.nextDouble() * max;
-        money = money <= min ? 0.01: money;
-        money = Math.floor(money * 100) / 100;
+        Random r = new Random();
+        double min = 0.01; //最小可获得金额
+        double max = remainMoney / remainSize * 2;//最大可获得金额
+        double money = r.nextDouble() * max; // 获取随机金额
+        money = money <= min ? 0.01 : money;//不能比0.01小
+        money = Math.floor(money * 100) / 100;//向下取整，除100
         return money;
     }
 

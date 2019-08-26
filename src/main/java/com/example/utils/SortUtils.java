@@ -1,10 +1,6 @@
 package com.example.utils;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * 排序
@@ -12,7 +8,7 @@ import java.util.Map;
 public class SortUtils {
 
     /**
-     * 冒泡
+     * 冒泡 时间O(n2) 空间O(1)
      */
     private static void sort1(int[] arr) {
         for (int i = 0; i < arr.length-1; i++){
@@ -28,7 +24,51 @@ public class SortUtils {
     }
 
     /**
-     * 选择
+     * 冒泡V2 时间O(n2) 空间O(1)
+     */
+    private static void sort1V2(int[] arr) {
+        for (int i = 0; i < arr.length; i++){
+            //有序标记，每一轮的初始是true
+            boolean isSorted = true;
+            for (int j = 0; j < arr.length - i - 1; j++){
+                //和后一个数相比，比它大就交换
+                if (arr[j] > arr[j + 1]){
+                    int tmp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = tmp;
+                    //有元素交换，所以不是有序，标记变为false
+                    isSorted = false;
+                }
+            }
+            if (isSorted){
+                break;
+            }
+        }
+    }
+
+    private static void sort(int array[]) {
+        int tmp = 0;
+        for (int i = 0; i < array.length; i++) {
+            //有序标记，每一轮的初始是true
+            boolean isSorted = true;
+            for (int j = 0; j < array.length - i - 1; j++) {
+                if (array[j] > array[j + 1]) {
+                    tmp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = tmp;
+                    //有元素交换，所以不是有序，标记变为false
+                    isSorted = false;
+                }
+            }
+            if (isSorted) {
+                break;
+            }
+        }
+    }
+
+
+    /**
+     * 选择 时间O(n2) 空间O(1)
      */
     private static void sort2(int[] arr) {
         for (int i = 0; i < arr.length - 1; i++) {
@@ -79,6 +119,12 @@ public class SortUtils {
         int[] arr1 = {1,6,22,2,4,9};
         sort1(arr1);
         System.out.println(Arrays.toString(arr1));
+        int[] arr1V2 = {1,6,22,2,4,9};
+        sort1V2(arr1V2);
+        System.out.println(Arrays.toString(arr1V2));
+        int[] sort = {1,6,22,2,4,9};
+        sort(sort);
+        System.out.println(Arrays.toString(sort));
         int[] arr2 = {11,16,22,2,14,9};
         sort2(arr2);
         System.out.println(Arrays.toString(arr2));

@@ -21,6 +21,13 @@ public class RedisTest {
 
     @Test
     public void setRedis() throws Exception{
+
+//        redisTemplate.opsForHash();  散列
+//        redisTemplate.opsForList();  列表
+//        redisTemplate.opsForSet();   集合
+//        redisTemplate.opsForValue(); 字符串
+//        redisTemplate.opsForZSet();  有序集合
+
         try {
             redisTemplate.opsForValue().set("aaaa", "bbbb");
         } catch (Exception e) {

@@ -26,6 +26,7 @@ public class CountDownLatchDemo implements Runnable {
             //计数减一
             //放在finally避免任务执行过程出现异常，导致countDown()不能被执行
             latch.countDown();
+            System.out.println("当前" + latch.getCount());
         }
     }
 

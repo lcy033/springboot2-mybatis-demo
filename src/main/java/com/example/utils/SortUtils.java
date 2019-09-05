@@ -155,7 +155,7 @@ public class SortUtils {
         System.out.println(Arrays.toString(arr3));
 
         int[] arr = { 11, 22, 33, 44, 55, 66, 77 };
-        int index1 = binary(arr, 12, 0, arr.length - 1);
+        int index1 = binary(arr, 11, 0, arr.length - 1);
         int index2 = binary(arr, 66, 0, arr.length - 1);
         System.out.println(index1);
         System.out.println(index2);

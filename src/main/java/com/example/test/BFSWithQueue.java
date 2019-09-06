@@ -14,17 +14,44 @@ public class BFSWithQueue {
         if (root != null) {
             queue.add(root);
         }
+        System.out.println(root.getVal());
         while (!queue.isEmpty()) {
             TreeNode treeNode = queue.poll();
             //在这里处理遍历到的TreeNode节点
-            System.out.print(treeNode.getVal());
             if (treeNode.left != null) {
                 queue.add(treeNode.left);
-                System.out.println(treeNode.getVal() + " ");
+                System.out.print(treeNode.left.getVal() + " ");
             }
             if (treeNode.right != null) {
                 queue.add(treeNode.right);
-                System.out.println(treeNode.getVal() + " ");
+                System.out.println(treeNode.right.getVal() + " ");
+            }
+        }
+    }
+
+    /**
+     * 反转二叉
+     * @param root
+     */
+    private static void BFSWithQueue2(TreeNode root) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        TreeNode temp = null;
+        if (root != null) {
+            queue.add(root);
+        }
+        System.out.println(root.getVal());
+        while (!queue.isEmpty()) {
+            TreeNode treeNode = queue.poll();
+            temp = treeNode.left;
+            treeNode.left = treeNode.right;
+            treeNode.right = temp;
+            if (treeNode.left != null) {
+                queue.add(treeNode.left);
+                System.out.print(treeNode.left.getVal() + " ");
+            }
+            if (treeNode.right != null) {
+                queue.add(treeNode.right);
+                System.out.println(treeNode.right.getVal() + " ");
             }
         }
     }
@@ -36,6 +63,7 @@ public class BFSWithQueue {
         treeNode1.setLeft(treeNode2);
         treeNode1.setRight(treeNode3);
         BFSWithQueue.BFSWithQueue1(treeNode1);
+        BFSWithQueue.BFSWithQueue2(treeNode1);
     }
 
 }

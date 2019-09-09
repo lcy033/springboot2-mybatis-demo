@@ -16,6 +16,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 import sun.misc.BASE64Encoder;
 
 import java.io.*;
@@ -108,6 +109,17 @@ public class FileTests {
 	public void testMybatisPlus(){
 		List<GspMenu> list = gspMenuMapper.selectList(null);
 		log.info("结果：{}", list);
+	}
+
+	@Test
+	@Transactional(rollbackFor = Exception.class)
+	public void testMySql(){
+		GspMenu gspMenu = gspMenuMapper.selectById(6L);
+		log.info("结果1：{}", gspMenu);
+		gspMenu.setMenuDesc("10");
+		gspMenuMapper.updateById(gspMenu);
+		GspMenu gspMenu1 = gspMenuMapper.selectById(6L);
+		log.info("结果2：{}", gspMenu1);
 	}
 
 	public static void main(String[] args) {

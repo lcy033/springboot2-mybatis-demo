@@ -8,16 +8,33 @@ import java.util.List;
  */
 public class MergeGold {
 
-    public static double mergeGold(List<Double> weight, int m){
-        if (weight.isEmpty()){
+    private static double mergeGold(List<Double> weight, int m){
+        if (weight.isEmpty() || m <= 0){
             return 0;
         }
-        double a = 0.1;//大于等于10 金额
-        double b = 0.005;//超过10个每块金额
-        int c = weight.size() / m;//分组
-        int d = weight.size() % m;//余数
-        int e = 0;//大于10块的个数
-        boolean f = d > 10;//d是否大于10
+
+        //大于等于10 金额
+        double a = 0.1;
+        //超过10个每块金额
+        double b = 0.005;
+
+        //判断分组是否大于数量
+        if (m > weight.size()){
+            if (m > 10){
+                return a + (weight.size() - 10) * b;
+            }else {
+                return a;
+            }
+        }
+
+        //分组
+        int c = weight.size() / m;
+        //余数
+        int d = weight.size() % m;
+        //大于10块的个数
+        int e = 0;
+        //d是否大于10
+        boolean f = d > 10;
 
         if (m <= 10){
             if (d != 0){
@@ -42,43 +59,7 @@ public class MergeGold {
         list.add(1d);
         list.add(1d);
         list.add(1d);
-        list.add(1d);
-        list.add(1d);
-        list.add(1d);
-        list.add(1d);
-        list.add(1d);
-        list.add(1d);
-        list.add(1d);
-        list.add(1d);
-        list.add(1d);
-        list.add(1d);
-        list.add(1d);
-        list.add(1d);
-        list.add(1d);
-        list.add(1d);
-        list.add(1d);
-        list.add(1d);
-        list.add(1d);
-        list.add(1d);
-        list.add(1d);
-        list.add(1d);
-        list.add(1d);
-        list.add(1d);
-        list.add(1d);
-        list.add(1d);
-        list.add(1d);
-        list.add(1d);
-        list.add(1d);
-        list.add(1d);
-        list.add(1d);
-        list.add(1d);
-        list.add(1d);
-        list.add(1d);
-        list.add(1d);
-        list.add(1d);
-        list.add(1d);
-        list.add(1d);
-        System.out.println(MergeGold.mergeGold(list, 20));
+        System.out.println(MergeGold.mergeGold(list, 9));
 
     }
 }

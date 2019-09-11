@@ -1,5 +1,8 @@
 package com.example.model;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -7,6 +10,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.springframework.data.annotation.Id;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -22,6 +26,7 @@ import java.util.Date;
 public class GspMenu implements Serializable {
 
     @ApiModelProperty(value = "id", required = true)
+    @TableId(type = IdType.AUTO)
     private Long id;
 
     @ApiModelProperty(value = "name")

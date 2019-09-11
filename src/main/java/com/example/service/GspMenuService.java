@@ -3,10 +3,12 @@ package com.example.service;
 import com.example.mapper.GspMenuMapper;
 import com.example.model.GspMenu;
 import com.example.model.base.ResponseVo;
+import io.swagger.models.auth.In;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by finup on 2018/12/11.
@@ -30,5 +32,33 @@ public class GspMenuService {
             return ResponseVo.ofError();
         }
         return ResponseVo.ofSuccess(gspMenu);
+    }
+
+
+    /**
+     * 事务测试
+     */
+    @Transactional(rollbackFor = Exception.class)
+    public void addGspMenu(){
+        GspMenu gspMenu = new GspMenu();
+        gspMenu.setMenuName("A");
+        gspMenuMapper.insert(gspMenu);
+
+        this.addGspMenu1();
+
+        gspMenu.setMenuName("B");
+        gspMenuMapper.insert(gspMenu);
+
+        throw new RuntimeException();
+
+    }
+
+
+//    @Transactional(rollbackFor = Exception.class)
+    public void addGspMenu1(){
+        GspMenu gspMenu = new GspMenu();
+        gspMenu.setMenuName("C");
+        gspMenuMapper.insert(gspMenu);
+        throw new RuntimeException();
     }
 }

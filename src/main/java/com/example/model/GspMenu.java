@@ -23,10 +23,11 @@ import java.util.Date;
 @Setter
 @Getter
 @ToString
+@TableName(value = "gsp_menu")
 public class GspMenu implements Serializable {
 
     @ApiModelProperty(value = "id", required = true)
-    @TableId(type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
     @ApiModelProperty(value = "name")

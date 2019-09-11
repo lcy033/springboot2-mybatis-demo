@@ -38,18 +38,24 @@ public class GspMenuService {
     /**
      * 事务测试
      */
-    @Transactional(rollbackFor = Exception.class)
+    @Transactional(rollbackFor = Exception.class, timeout = 3)
     public void addGspMenu(){
         GspMenu gspMenu = new GspMenu();
         gspMenu.setMenuName("A");
         gspMenuMapper.insert(gspMenu);
 
-        this.addGspMenu1();
+//        this.addGspMenu1();
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         gspMenu.setMenuName("B");
         gspMenuMapper.insert(gspMenu);
 
-        throw new RuntimeException();
+//        throw new RuntimeException();
 
     }
 
@@ -59,6 +65,6 @@ public class GspMenuService {
         GspMenu gspMenu = new GspMenu();
         gspMenu.setMenuName("C");
         gspMenuMapper.insert(gspMenu);
-        throw new RuntimeException();
+//        throw new RuntimeException();
     }
 }

@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -20,6 +21,9 @@ public class GspMenuService {
 
     @Autowired
     private GspMenuMapper gspMenuMapper;
+
+    @Autowired
+    private GspMenu1Service gspMenu1Service;
 
     /**
      * 查找数据
@@ -44,27 +48,28 @@ public class GspMenuService {
         gspMenu.setMenuName("A");
         gspMenuMapper.insert(gspMenu);
 
+        gspMenu1Service.addGspMenu1();
 //        this.addGspMenu1();
-
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//
+//        try {
+//            Thread.sleep(5000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
         gspMenu.setMenuName("B");
         gspMenuMapper.insert(gspMenu);
 
-//        throw new RuntimeException();
+        throw new RuntimeException();
 
     }
 
 
-//    @Transactional(rollbackFor = Exception.class)
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
     public void addGspMenu1(){
         GspMenu gspMenu = new GspMenu();
         gspMenu.setMenuName("C");
         gspMenuMapper.insert(gspMenu);
-//        throw new RuntimeException();
+        throw new RuntimeException();
     }
 }

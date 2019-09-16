@@ -60,7 +60,7 @@ public class GspMenuService {
         gspMenu.setMenuName("B");
         gspMenuMapper.insert(gspMenu);
 
-        throw new RuntimeException();
+//        throw new RuntimeException();
 
     }
 

@@ -27,6 +27,6 @@ public class GspMenu1Service {
         GspMenu gspMenu = new GspMenu();
         gspMenu.setMenuName("C");
         gspMenuMapper.insert(gspMenu);
-//        throw new RuntimeException();
+        throw new RuntimeException();
     }
 }

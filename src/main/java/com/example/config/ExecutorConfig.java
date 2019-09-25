@@ -15,8 +15,8 @@ import java.util.concurrent.ThreadPoolExecutor;
  * Created by finup on 2018/12/29.
  * 线程池
  */
-//@Configuration
-//@EnableAsync
+@Configuration
+@EnableAsync
 public class ExecutorConfig {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Exception.class);

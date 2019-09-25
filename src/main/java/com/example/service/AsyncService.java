@@ -16,7 +16,11 @@ public class AsyncService {
     @Async("asyncServiceExecutor")
     public void executeAsync() {
         logger.info("start executeAsync");
-
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         System.out.println("异步线程要做的事情");
         System.out.println("可以在这里执行批量插入等耗时的事情");
 

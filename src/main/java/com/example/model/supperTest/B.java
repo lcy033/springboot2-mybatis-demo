@@ -1,6 +1,11 @@
 package com.example.model.supperTest;
 
+import javax.security.auth.login.Configuration;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 /**
  * Created by finup on 2019/5/29.
@@ -17,6 +22,15 @@ public class B extends A{
 
 
     public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        String[] myArray = { "Apple", "Banana", "Orange" };
+        List<String> myList = Arrays.asList(myArray);
+        System.out.println(myList.getClass());
+        System.out.println(list.getClass());
+        List<String> list1 = new ArrayList<>(myList);
+        System.out.println(list1.getClass());
+        System.out.println(Arrays.stream(myArray).collect(Collectors.toList()).getClass());
+
         B b = new B();
         b.value();
 

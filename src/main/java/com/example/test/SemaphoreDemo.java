@@ -31,7 +31,7 @@ public class SemaphoreDemo {
     public static void main(String[] args) {
         //创建线程池（简单）
         ExecutorService threadPool = Executors.newFixedThreadPool(100);
-        //设置可以同时通过的数量
+        //设置可以同时通过的数量(也可以设置模式，公平、非公平，默认是非公平模式false)
         final Semaphore semaphore = new Semaphore(2);
 
         for (int i = 0; i < THREAD_COUNT; i++) {

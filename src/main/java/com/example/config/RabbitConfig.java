@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * Created by finup on 2019/8/16.
  */
-@Configuration
+//@Configuration
 public class RabbitConfig {
 
     @Bean

@@ -7,7 +7,7 @@ public enum ResponseCode {
     OK("200", "OK"),
     UNAUTHORIZED("401", "Unauthorized"),
     PARAMETER_ERROR("400", "parameter error"),
-
+    DATA_INFO_ERROR("432", "参数异常，请重新填写"),
     INTERNAL_SERVER_ERROR("500", "哎呀，宝宝忙晕了~给个机会，重试下"),
     REPEAT("520", "请勿重复提交");
 

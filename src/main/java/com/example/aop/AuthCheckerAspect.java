@@ -8,6 +8,7 @@ import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StopWatch;
 
 @Slf4j
 @Aspect
@@ -39,8 +40,14 @@ public class AuthCheckerAspect {
         } catch (Exception e) {
             log.info("权限认证,执行 {} 请求参数 : {}", methodName.get(), joinPoint.getArgs());
         }
-
-        return joinPoint.proceed();
+        StopWatch stopWatch = new StopWatch();
+        //开始
+        stopWatch.start();
+        Object retVal = joinPoint.proceed();
+        // 结束
+        stopWatch.stop();
+        log.info("权限认证,执行 {} 耗时 : {}", methodName.get(), stopWatch.getTotalTimeSeconds());
+        return retVal;
     }
 
 }

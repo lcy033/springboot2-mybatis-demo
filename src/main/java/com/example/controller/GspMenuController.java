@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.aop.annotation.AuthChecker;
 import com.example.model.GspMenu;
 import com.example.model.base.ResponseVo;
 import com.example.service.AsyncService;
@@ -38,5 +39,18 @@ public class GspMenuController {
     @ApiOperation(value = "异步线程池提交任务", httpMethod = "GET", produces = "application/json;charset=UTF-8")
     public void async(){
         asyncService.executeAsync();
+    }
+
+    @PostMapping("/v1/aop/alive")
+    @ApiOperation(value = "aop栗子1", httpMethod = "POST", response = ResponseVo.class, produces = "application/json;charset=UTF-8")
+    public ResponseVo<String> aopAlive(@RequestBody GspMenu gspMenu){
+        return ResponseVo.ofSuccess("服务一切正常，调用了栗子1");
+    }
+
+    @AuthChecker
+    @PostMapping("/v1/aop/info")
+    @ApiOperation(value = "aop栗子2", httpMethod = "POST", response = ResponseVo.class, produces = "application/json;charset=UTF-8")
+    public ResponseVo<String> aopInfo(@RequestBody GspMenu gspMenu){
+        return ResponseVo.ofSuccess("服务一切正常，调用了栗子2");
     }
 }

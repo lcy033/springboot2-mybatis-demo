@@ -27,6 +27,13 @@
         SELECT
         <include refid="allColumn"/>
         FROM gsp_menu WHERE menu_name = #{menuName}
+        LIMIT 1
+    </select>
+
+    <select id="findListByName" resultMap="AllColumnMap" >
+        SELECT
+        <include refid="allColumn"/>
+        FROM gsp_menu WHERE menu_name = #{menuName}
     </select>
 
     <select id="findGspMenuByName1" resultMap="AllColumnMap" >

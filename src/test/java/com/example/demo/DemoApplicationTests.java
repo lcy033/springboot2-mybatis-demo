@@ -48,6 +48,12 @@ public class DemoApplicationTests {
 	}
 
 	@Test
+	public void findListByName(){
+		List<GspMenu> gspMenu = gspMenuMapper.findListByName("name");
+		log.info("结果：{}", gspMenu);
+	}
+
+	@Test
 	public void findGspMenuByName1(){
 		GspMenu gspMenu = gspMenuMapper.findGspMenuByName1("name", "url");
 		log.info("结果：{}", gspMenu);

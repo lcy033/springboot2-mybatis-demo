@@ -1,10 +1,13 @@
 package com.example.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.example.aop.annotation.DecodeBase64;
 import com.example.aop.annotation.EncodeBase64;
 import com.example.model.GspMenu;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * Created by finup on 2018/12/10.
@@ -17,6 +20,7 @@ public interface GspMenuMapper extends BaseMapper<GspMenu>{
      * @param id
      * @return
      */
+    @DecodeBase64(value = "menuName")
     GspMenu findGspMenuById(@Param("id") Long id);
 
     /**
@@ -24,8 +28,18 @@ public interface GspMenuMapper extends BaseMapper<GspMenu>{
      * @param menuName
      * @return
      */
+    @DecodeBase64(value = "menuName,menuUrl")
     @EncodeBase64(value = "menuName")
     GspMenu findGspMenuByName(@Param("menuName") String menuName);
+
+    /**
+     * 查询
+     * @param menuName
+     * @return
+     */
+    @DecodeBase64(value = "menuName,menuUrl")
+    @EncodeBase64(value = "menuName")
+    List<GspMenu> findListByName(@Param("menuName") String menuName);
 
     /**
      * 查询

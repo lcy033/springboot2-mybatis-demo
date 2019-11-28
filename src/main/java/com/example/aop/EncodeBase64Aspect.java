@@ -71,10 +71,10 @@ public class EncodeBase64Aspect {
                     //实体对象
                 } else {
                     Object object = getParameter[i];
-                    // 获取obj类的字节文件对象
-                    Class c = object.getClass();
-                    //排除 除了String的类型
-                    if (!c.getName().contains("java.")) {
+                        // 获取obj类的字节文件对象
+                        Class c = object.getClass();
+                        //排除 除了String的类型
+                        if (!c.getName().contains("java.")) {
                         for (String value : values) {
                             // 获取该类的成员变量
                             Field f = c.getDeclaredField(value);

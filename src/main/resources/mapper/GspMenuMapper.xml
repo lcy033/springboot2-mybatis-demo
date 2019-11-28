@@ -22,4 +22,29 @@
       <include refid="allColumn"/>
         FROM gsp_menu WHERE id = #{id}
     </select>
+
+    <select id="findGspMenuByName" resultMap="AllColumnMap" >
+        SELECT
+        <include refid="allColumn"/>
+        FROM gsp_menu WHERE menu_name = #{menuName}
+    </select>
+
+    <select id="findGspMenuByName1" resultMap="AllColumnMap" >
+        SELECT
+        <include refid="allColumn"/>
+        FROM gsp_menu WHERE menu_name = #{menuName} AND menu_url = #{menuUrl}
+    </select>
+
+    <select id="findGspMenuByName2" resultMap="AllColumnMap" >
+        SELECT
+        <include refid="allColumn"/>
+        FROM gsp_menu WHERE menu_name = #{menuName} AND menu_father_id = #{menuFatherId}
+    </select>
+
+    <insert id="addGspMenu" parameterType="com.example.model.GspMenu" useGeneratedKeys="true" keyProperty="pojo.id">
+        INSERT INTO gsp_menu
+        (menu_name, menu_url, menu_desc)
+        VALUES
+        (#{pojo.menuName}, #{pojo.menuUrl}, #{pojo.menuDesc})
+    </insert>
 </mapper>

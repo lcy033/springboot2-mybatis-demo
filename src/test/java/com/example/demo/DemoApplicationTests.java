@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.alibaba.fastjson.JSON;
 import com.example.mapper.GspMenuMapper;
 import com.example.model.GspMenu;
 import com.example.service.AsyncService;
@@ -12,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 
 @RunWith(SpringRunner.class)
@@ -27,6 +30,34 @@ public class DemoApplicationTests {
 
 	@Autowired
 	private AsyncService asyncService;
+
+	@Test
+	public void addGspMenu(){
+		GspMenu gspMenu = new GspMenu();
+		gspMenu.setMenuUrl("url");
+		gspMenu.setMenuName("name");
+		gspMenu.setMenuDesc("desc");
+		gspMenuMapper.addGspMenu(gspMenu);
+		log.info("结果：{}", gspMenu.getId());
+	}
+
+	@Test
+	public void findGspMenuByName(){
+		GspMenu gspMenu = gspMenuMapper.findGspMenuByName("name");
+		log.info("结果：{}", gspMenu);
+	}
+
+	@Test
+	public void findGspMenuByName1(){
+		GspMenu gspMenu = gspMenuMapper.findGspMenuByName1("name", "url");
+		log.info("结果：{}", gspMenu);
+	}
+
+	@Test
+	public void findGspMenuByName2(){
+		GspMenu gspMenu = gspMenuMapper.findGspMenuByName2("name", 111);
+		log.info("结果：{}", gspMenu);
+	}
 
 	@Test
 	public void contextLoads() {

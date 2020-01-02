@@ -37,9 +37,7 @@ public class AuthCheckerAspect {
                 log.info("权限认证,[错误, 权限不合法!]执行 {} 请求参数 : {}", methodName.get(), s);
                 return false;
             }
-        } catch (Exception e) {
-            log.info("权限认证,执行 {} 请求参数 : {}", methodName.get(), joinPoint.getArgs());
-        }
+
         StopWatch stopWatch = new StopWatch();
         //开始
         stopWatch.start();
@@ -48,6 +46,12 @@ public class AuthCheckerAspect {
         stopWatch.stop();
         log.info("权限认证,执行 {} 耗时 : {}", methodName.get(), stopWatch.getTotalTimeSeconds());
         return retVal;
+        } catch (Exception e) {
+            log.info("权限认证,执行 {} 请求参数 : {}", methodName.get(), joinPoint.getArgs());
+        }finally {
+            methodName.remove();
+        }
+        return null;
     }
 
 }

@@ -2,6 +2,7 @@ package com.example.test;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
@@ -15,7 +16,7 @@ public class SemaphoreDemo {
     /**
      * 请求数量
      */
-    private static final int THREAD_COUNT = 550;
+    private static final int THREAD_COUNT = 20;
 
     /**
      * 模拟
@@ -29,6 +30,7 @@ public class SemaphoreDemo {
     }
 
     public static void main(String[] args) {
+
         //创建线程池（简单）
         ExecutorService threadPool = Executors.newFixedThreadPool(100);
         //设置可以同时通过的数量(也可以设置模式，公平、非公平，默认是非公平模式false)

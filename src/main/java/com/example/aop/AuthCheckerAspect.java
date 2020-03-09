@@ -18,7 +18,7 @@ public class AuthCheckerAspect {
     /**
      * 方法名
      */
-    private ThreadLocal<String> methodName = new ThreadLocal<>();
+    private static ThreadLocal<String> methodName = new ThreadLocal<>();
 
     /**
      * 定义一个 Pointcut, 使用 切点表达式函数 来描述对哪些 Join point 使用 advise.

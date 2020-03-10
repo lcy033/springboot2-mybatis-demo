@@ -26,4 +26,9 @@ public class TransactionalTest {
     public void test1() throws Exception{
         gspMenuService.addGspMenu();
     }
+
+    @Test
+    public void test2() throws Exception{
+        gspMenuService.updateGspMenu();
+    }
 }

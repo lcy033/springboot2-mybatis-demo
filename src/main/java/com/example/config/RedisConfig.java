@@ -15,8 +15,8 @@ import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
  * @author finup
  * @date 2019/8/16
  */
-@Configuration
-@ConfigurationProperties(prefix = "spring.redis.cluster")
+//@Configuration
+//@ConfigurationProperties(prefix = "spring.redis.cluster")
 public class RedisConfig {
 
     @Value("${spring.redis.password}")

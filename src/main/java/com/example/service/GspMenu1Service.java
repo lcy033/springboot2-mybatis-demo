@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.example.mapper.GspMenuMapper;
 import com.example.model.GspMenu;
 import com.example.model.base.ResponseVo;
@@ -28,5 +29,20 @@ public class GspMenu1Service {
         gspMenu.setMenuName("C");
         gspMenuMapper.insert(gspMenu);
         throw new RuntimeException();
+    }
+
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
+    public int newUpdateGspMenu(Long id) {
+        GspMenu gm = gspMenuMapper.selectById(id);
+        LOGGER.info("第二次查询信息:{}", gm);
+        GspMenu gspMenu = new GspMenu();
+        gspMenu.setMenuName("1111");
+        gspMenu.setMenuFatherId(gm.getMenuFatherId() + 1);
+        return gspMenuMapper.update(gspMenu, new UpdateWrapper<GspMenu>().lambda().eq(GspMenu::getId, id).eq(GspMenu::getMenuFatherId, gm.getMenuFatherId()));
+    }
+
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
+    public GspMenu findGspMenu(Long id) {
+        return gspMenuMapper.selectById(id);
     }
 }

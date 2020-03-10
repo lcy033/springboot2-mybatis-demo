@@ -1,11 +1,16 @@
 package com.example.test.so;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * Created by finup on 2020/3/9.
  */
 public class VolatileTest {
 
+    //保证可见性
     static volatile int num = 0;
+
+    static AtomicInteger atomicInteger;
 
     public static void addNum(){
         num = 60;
@@ -26,7 +31,7 @@ public class VolatileTest {
         while (num == 0){
 //            System.out.println("num == 0");
         }
-
         System.out.println("num == " + num);
     }
+
 }

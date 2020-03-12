@@ -42,12 +42,15 @@ public class SemaphoreDemo {
                 try {
                     //获取许可
                     semaphore.acquire();
+                    log.info("threadnum:" + threadnum + "获取许可");
                     test(threadnum);
-                    //释放许可
-                    semaphore.release();
                 } catch (InterruptedException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
+                }finally {
+                    //释放许可
+                    semaphore.release();
+                    log.info("threadnum:" + threadnum + "释放许可");
                 }
             });
         }

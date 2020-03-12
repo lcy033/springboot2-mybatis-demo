@@ -1,9 +1,5 @@
-package com.example.synchronizedCase;
+package com.example.test.synchronizedCase;
 
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * Created by finup on 2019/8/6.

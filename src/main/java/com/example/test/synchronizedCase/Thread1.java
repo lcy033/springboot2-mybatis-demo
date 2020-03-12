@@ -1,4 +1,4 @@
-package com.example.synchronizedCase;
+package com.example.test.synchronizedCase;
 
 /**
  * Created by finup on 2019/8/9.

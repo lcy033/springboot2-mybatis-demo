@@ -1,4 +1,4 @@
-package com.example.test.so;
+package com.example.test.volatileCase;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;

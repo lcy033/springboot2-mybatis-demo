@@ -1,7 +1,5 @@
 package com.example.test.atomicCase;
 
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
@@ -13,8 +11,8 @@ public class AtomicTest {
     AtomicReference<Thread> atomicReference = new AtomicReference<>();
 
     //安全list
-//    CopyOnWriteArrayList list = new CopyOnWriteArrayList();
-
+//    CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList();
+//    Vector<String> vector = new Vector<>();
 
     private void myLock(){
         Thread thread = Thread.currentThread();

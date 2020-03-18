@@ -15,7 +15,7 @@ public class ABACase {
 
     static AtomicInteger atomicInteger = new AtomicInteger(187);
 
-    static AtomicStampedReference atomicStampedReference = new AtomicStampedReference(111, 1);
+    static AtomicStampedReference atomicStampedReference = new  AtomicStampedReference(111, 1);
 
     public static void main(String[] args) {
 

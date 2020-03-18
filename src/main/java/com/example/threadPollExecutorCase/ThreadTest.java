@@ -10,7 +10,7 @@ public class ThreadTest {
 
     public static void main(String[] args) {
         int corePoolSize = 2;
-        int maximumPoolSize = 4;
+        int maximumPoolSize = 3;
         long keepAliveTime = 10;
         TimeUnit unit = TimeUnit.SECONDS;
         BlockingQueue<Runnable> workQueue = new ArrayBlockingQueue<>(2);

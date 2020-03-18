@@ -1,6 +1,7 @@
 package com.example.test;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 /**
@@ -15,6 +16,7 @@ public class SingletonClassCheck {
     }
 
     public static SingletonClassCheck getSingletonClass(){
+
         if (singletonClass == null){
             synchronized (SingletonClassCheck.class){
                 if (singletonClass == null){
@@ -39,6 +41,7 @@ public class SingletonClassCheck {
         }
 
         System.out.println(map);
+
     }
 
 }

@@ -13,12 +13,12 @@ public class MyTask implements Runnable{
 
     @Override
     public void run() {
-        try {
-            System.out.println(this.toString() + " is running!");
-            Thread.sleep(3000); //让任务执行慢点
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+            System.out.println(this.toString() + " is running!" + Thread.currentThread().getName());
+//            Thread.sleep(3000); //让任务执行慢点
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public String getName() {

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * 拦截器（可以做签名认证）
  * Created by finup on 2018/12/12.
  */
 public class ControllerInterceptor implements HandlerInterceptor {

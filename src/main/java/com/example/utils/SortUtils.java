@@ -1,6 +1,8 @@
 package com.example.utils;
 
 import java.util.Arrays;
+import java.util.Hashtable;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * 排序
@@ -138,6 +140,7 @@ public class SortUtils {
     }
 
     public static void main(String[] args) {
+
         int[] arr1 = {1,6,22,2,4,9};
         sort1(arr1);
         System.out.println(Arrays.toString(arr1));

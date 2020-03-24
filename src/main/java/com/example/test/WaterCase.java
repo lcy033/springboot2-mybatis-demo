@@ -43,7 +43,7 @@ public class WaterCase {
      * @param index 第几根柱子
      * @return
      */
-    public String getWater(int index, int[] nums){
+    private String getWater(int index, int[] nums){
         if (index > nums.length){
             System.out.println("超出柱子数量");
         }

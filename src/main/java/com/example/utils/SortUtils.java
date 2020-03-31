@@ -1,8 +1,11 @@
 package com.example.utils;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.Arrays;
-import java.util.Hashtable;
-import java.util.concurrent.CompletableFuture;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 排序
@@ -139,28 +142,67 @@ public class SortUtils {
         return -1;
     }
 
+    /**
+     * 提取数字
+     * 如果字符串中出现连续的 数字 则认为 字符相等
+     * 123abc12b1234  12abc1b123 出现连续字符串 123
+     * 123abc12b1234  2abc4b23 最后的输出结果
+     */
+    private static String getNumber(String n1, String n2){
+        String[] list1 = n1.split(",");
+        String[] list2 = n2.split(",");
+        for (int i = 0; i < list1.length; i++) {
+            if (list1[i] == null){
+                continue;
+            }
+            String max = null;
+            for (int j = 0; j < list2.length; j++) {
+                if (list2[i] == null){
+                    continue;
+                }
+
+            }
+        }
+        return null;
+    }
+
+    private static String getN(String str) {
+        String regEx="[^0-9]";
+        Pattern p = Pattern.compile(regEx);
+        Matcher m = p.matcher(str);
+        return m.replaceAll(",").trim();
+    }
+
     public static void main(String[] args) {
+        String s1 = "123abc12b1234";
+        String s2 = "2abc4b23";
+        String a1 = getN(s1);
+        String a2 = getN(s2);
+        String n1 = a1.length() > a2.length() ? a2 : a1;
+        String n2 = a1.length() > a2.length() ? a1 : a2;
+        //n1短 n2长
+        System.out.println(getNumber(n1, n2));
 
-        int[] arr1 = {1,6,22,2,4,9};
-        sort1(arr1);
-        System.out.println(Arrays.toString(arr1));
-        int[] arr1V2 = {1,6,22,2,4,9};
-        sort1V2(arr1V2);
-        System.out.println(Arrays.toString(arr1V2));
-        int[] sort = {1,6,22,2,4,9};
-        sort(sort);
-        System.out.println(Arrays.toString(sort));
-        int[] arr2 = {11,16,22,2,14,9};
-        sort2(arr2);
-        System.out.println(Arrays.toString(arr2));
-        int[] arr3 = {21,26,22,12,4,29};
-        sort3(arr3, 3, 5);
-        System.out.println(Arrays.toString(arr3));
-
-        int[] arr = { 11, 22, 33, 44, 55, 66, 77 };
-        int index1 = binary(arr, 11, 0, arr.length - 1);
-        int index2 = binary(arr, 66, 0, arr.length - 1);
-        System.out.println(index1);
-        System.out.println(index2);
+//        int[] arr1 = {1,6,22,2,4,9};
+//        sort1(arr1);
+//        System.out.println(Arrays.toString(arr1));
+//        int[] arr1V2 = {1,6,22,2,4,9};
+//        sort1V2(arr1V2);
+//        System.out.println(Arrays.toString(arr1V2));
+//        int[] sort = {1,6,22,2,4,9};
+//        sort(sort);
+//        System.out.println(Arrays.toString(sort));
+//        int[] arr2 = {11,16,22,2,14,9};
+//        sort2(arr2);
+//        System.out.println(Arrays.toString(arr2));
+//        int[] arr3 = {21,26,22,12,4,29};
+//        sort3(arr3, 3, 5);
+//        System.out.println(Arrays.toString(arr3));
+//
+//        int[] arr = { 11, 22, 33, 44, 55, 66, 77 };
+//        int index1 = binary(arr, 11, 0, arr.length - 1);
+//        int index2 = binary(arr, 66, 0, arr.length - 1);
+//        System.out.println(index1);
+//        System.out.println(index2);
     }
 }

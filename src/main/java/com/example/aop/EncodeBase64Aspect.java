@@ -1,11 +1,7 @@
 package com.example.aop;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.example.aop.annotation.EncodeBase64;
-import com.example.model.GspMenu;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -13,19 +9,12 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.aspectj.runtime.internal.AroundClosure;
 import org.springframework.stereotype.Component;
-import org.springframework.util.Base64Utils;
-import org.springframework.util.StopWatch;
 import sun.misc.BASE64Encoder;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.lang.reflect.Type;
-import java.math.BigDecimal;
-import java.util.List;
-import java.util.Map;
 
 /**
  * 加密(目前只支持实体对象与String类型)

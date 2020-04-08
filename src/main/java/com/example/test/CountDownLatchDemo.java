@@ -1,5 +1,7 @@
 package com.example.test;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -44,5 +46,8 @@ public class CountDownLatchDemo implements Runnable {
 
         // 关闭线程
         executor.shutdown();
+
+        HashMap map = new HashMap();
+        map.put("s", "s");
     }
 }

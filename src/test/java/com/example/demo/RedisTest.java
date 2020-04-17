@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
+import redis.clients.jedis.Jedis;
 
 /**
  * Created by finup on 2019/9/3.
@@ -42,6 +43,17 @@ public class RedisTest {
     @Test
     public void getRedis() {
         System.out.println(redisService.get("a"));
+    }
+
+    @Test
+    public void testJedis() {
+        Jedis jedis = new Jedis("127.0.0.1", 6379);//设置地址和端口
+        jedis.auth("test123");//如果redis服务器配置了需要密码，此处必须设置
+
+        //存储集合到redis，并取出
+        jedis.lpush("mylist","admin","tom","jack");
+
+        System.out.print(jedis.lrange("mylist",0,-1));
     }
 
 }

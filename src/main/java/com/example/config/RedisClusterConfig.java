@@ -11,13 +11,13 @@ import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 
 
 /**
- *
+ * redis 集群配置
  * @author finup
  * @date 2019/8/16
  */
 //@Configuration
 //@ConfigurationProperties(prefix = "spring.redis.cluster")
-public class RedisConfig {
+public class RedisClusterConfig {
 
     @Value("${spring.redis.password}")
     private String passWord;

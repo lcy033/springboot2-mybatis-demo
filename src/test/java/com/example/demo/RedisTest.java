@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.framework.RedisService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +20,9 @@ public class RedisTest {
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
 
+    @Autowired
+    private RedisService redisService;
+
     @Test
     public void setRedis() throws Exception{
 
@@ -34,4 +38,10 @@ public class RedisTest {
             log.error("redis set放大异常,异常原因{}", e);
         }
     }
+
+    @Test
+    public void getRedis() {
+        System.out.println(redisService.get("a"));
+    }
+
 }

@@ -4,8 +4,14 @@ import com.example.framework.RedisService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.redisson.Redisson;
+import org.redisson.api.RBucket;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
+import org.redisson.config.Config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 import redis.clients.jedis.Jedis;
@@ -23,6 +29,9 @@ public class RedisTest {
 
     @Autowired
     private RedisService redisService;
+
+    @Autowired
+    private RedissonClient redisson;
 
     @Test
     public void setRedis() throws Exception{
@@ -56,5 +65,29 @@ public class RedisTest {
 
         System.out.print(jedis.lrange("mylist",0,-1));
     }
+
+//    @Bean
+//    public RedissonClient redisson() {
+////        RedissonClient redisson = Redisson.create(
+////                Config.fromYAML(new ClassPathResource("redisson.yml").getInputStream()));
+//        Config config = new Config();
+//        config.useSingleServer().setAddress("redis://172.0.0.1:6379").setPassword("test123").setDatabase(0);
+//        return Redisson.create(config);
+//    }
+//
+//    @Test
+//    public void redisson() {
+//        String userId = "1";
+//        String key = userId + "_key";
+//        //获取锁
+//        RLock lock = redisson.getLock(key);
+//        lock.lock();
+//        //执行具体逻辑...
+//
+//        RBucket<Object> bucket = redisson.getBucket("a");
+//        bucket.set("bb");
+//
+//        lock.unlock();
+//    }
 
 }

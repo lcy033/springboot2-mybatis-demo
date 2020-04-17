@@ -43,6 +43,7 @@ public class RedisTest {
     @Test
     public void getRedis() {
         System.out.println(redisService.get("a"));
+        redisService.del("mylist");
     }
 
     @Test

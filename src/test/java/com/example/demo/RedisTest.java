@@ -30,8 +30,8 @@ public class RedisTest {
     @Autowired
     private RedisService redisService;
 
-    @Autowired
-    private RedissonClient redisson;
+//    @Autowired
+//    private RedissonClient redisson;
 
     @Test
     public void setRedis() throws Exception{
@@ -51,6 +51,7 @@ public class RedisTest {
 
     @Test
     public void getRedis() {
+        redisService.setString("a", "bbb");
         System.out.println(redisService.get("a"));
         redisService.del("mylist");
     }

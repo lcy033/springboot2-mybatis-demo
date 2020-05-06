@@ -30,7 +30,7 @@ public class MybatisPlusTest {
 	public void testSelect(){
 		log.info("----- selectAll method test ------");
 		List<GspMenu> list = gspMenuMapper.selectList(null);
-		Assert.assertEquals(4, list.size());
+		Assert.assertEquals("查询数量与预期不一致", 4, list.size());
 		list.forEach(System.out::println);
 	}
 

@@ -29,11 +29,11 @@ public class ResponseVo<T> implements Serializable {
     }
 
     public static <T> ResponseVo<T> ofError(String code, String message) {
-        return new ResponseVo(code, message, null);
+        return new ResponseVo<>(code, message, null);
     }
 
     public static <T> ResponseVo<T> ofError(String message) {
-        return new ResponseVo("500", message, null);
+        return new ResponseVo<>("500", message, null);
     }
 
     public static <T> ResponseVo<T> ofError(ResponseCode responseCode) {
@@ -45,11 +45,11 @@ public class ResponseVo<T> implements Serializable {
     }
 
     public static <T> ResponseVo<T> ofSuccess(T result) {
-        return new ResponseVo(ResponseCode.OK.getValue(), ResponseCode.OK.getMessage(), result);
+        return new ResponseVo<>(ResponseCode.OK.getValue(), ResponseCode.OK.getMessage(), result);
     }
 
     public static <T> ResponseVo<T> ofSuccess() {
-        return new ResponseVo(ResponseCode.OK.getValue(), ResponseCode.OK.getMessage(), null);
+        return new ResponseVo<>(ResponseCode.OK.getValue(), ResponseCode.OK.getMessage(), null);
     }
 
     public String getCode() {

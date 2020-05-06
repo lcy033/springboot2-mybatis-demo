@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import sun.misc.BASE64Encoder;
 
 import java.sql.Wrapper;
 
@@ -107,6 +108,18 @@ public class GspMenuService {
 //            LOGGER.info("第二次更新结果:{}", result);
         }
         LOGGER.info("修改成功退出循环");
+    }
+
+    /**
+     * 加密仍数据库测试
+     * @param args
+     */
+    public static void main(String[] args) {
+        System.out.println(new BASE64Encoder().encode(String.valueOf("用户管理").getBytes()));
+        System.out.println(new BASE64Encoder().encode(String.valueOf("角色管理").getBytes()));
+        System.out.println(new BASE64Encoder().encode(String.valueOf("测试3").getBytes()));
+        System.out.println(new BASE64Encoder().encode(String.valueOf("测试2").getBytes()));
+        System.out.println(new BASE64Encoder().encode(String.valueOf("1111").getBytes()));
     }
 
 

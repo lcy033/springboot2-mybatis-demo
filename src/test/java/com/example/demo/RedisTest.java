@@ -61,10 +61,20 @@ public class RedisTest {
         Jedis jedis = new Jedis("127.0.0.1", 6379);//设置地址和端口
         jedis.auth("test123");//如果redis服务器配置了需要密码，此处必须设置
 
-        //存储集合到redis，并取出
-        jedis.lpush("mylist","admin","tom","jack");
+//        Jedis jedis = new Jedis("r-2zebe1v34r5ocbaoih.redis.rds.aliyuncs.com", 6379);//设置地址和端口
+//        jedis.auth("oHUr#^VvWRLkI9rv");//如果redis服务器配置了需要密码，此处必须设置
+        jedis.set("aaa", "bbbb");
 
-        System.out.print(jedis.lrange("mylist",0,-1));
+        System.out.println(jedis.get("aaa"));
+
+        jedis.del("aaa");
+
+        System.out.println(jedis.get("aaaa"));
+
+        //存储集合到redis，并取出
+//        jedis.lpush("mylist","admin","tom","jack");
+//
+//        System.out.print(jedis.lrange("mylist",0,-1));
     }
 
 //    @Bean

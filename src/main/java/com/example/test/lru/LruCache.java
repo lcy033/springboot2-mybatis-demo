@@ -20,7 +20,9 @@ public class LruCache {
     class LinkedNode {
         int key;
         int value;
+        //上一个
         LinkedNode pre;
+        //下一个
         LinkedNode next;
     }
 

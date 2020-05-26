@@ -1,13 +1,18 @@
 package com.example.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.example.model.GspRole;
+import com.example.model.base.ResponseVo;
+import com.example.service.HomeService;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.concurrent.ConcurrentHashMap;
-
-@Controller
+@RestController
+@RequestMapping("/gsp/role")
 public class HomeController {
+
+    @Autowired
+    private HomeService homeService;
 
 
     @GetMapping("/")
@@ -15,14 +20,16 @@ public class HomeController {
         return "index";
     }
 
-    public static void main(String[] args) {
-        ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap();
-        concurrentHashMap.put("aaa", "aaa");
-        concurrentHashMap.put("aaa", "bbb");
-        concurrentHashMap.put("aaa1", "ccc");
-        concurrentHashMap.get("");
-        concurrentHashMap.get("aaa");
+    @PostMapping("/v1/add")
+    @ApiOperation(value = "新增角色", httpMethod = "POST", response = ResponseVo.class, produces = "application/json;charset=UTF-8")
+    public ResponseVo<String> findGspMenuPost(@RequestBody GspRole gspRole){
+        return homeService.add(gspRole);
+    }
 
+    @GetMapping("/v1/find/{id}")
+    @ApiOperation(value = "查询信息", httpMethod = "GET", response = ResponseVo.class, produces = "application/json;charset=UTF-8")
+    public ResponseVo<GspRole> find(@RequestParam(name = "id") Long id){
+        return homeService.find(id);
     }
 
 }

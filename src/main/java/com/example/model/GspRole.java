@@ -3,47 +3,37 @@ package com.example.model;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
-import com.baomidou.mybatisplus.core.conditions.segments.MergeSegments;
+import com.example.enums.RoleType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-import org.springframework.data.annotation.Id;
 
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * Created by finup on 2018/12/10.
- */
-@ApiModel("菜单表")
+@ApiModel("角色表")
 @Setter
 @Getter
 @ToString
-@TableName(value = "gsp_menu")
-public class GspMenu implements Serializable {
+@TableName(value = "gsp_role")
+public class GspRole implements Serializable {
 
     @ApiModelProperty(value = "id", required = true)
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    @ApiModelProperty(value = "name")
-    private String menuName;
+    @ApiModelProperty(value = "角色名称")
+    private String roleName;
 
-    @ApiModelProperty(value = "url")
-    private String menuUrl;
+    @ApiModelProperty(value = "角色type")
+    private RoleType roleType;
 
-    @ApiModelProperty(value = "父ID")
-    private Integer menuFatherId;
+    @ApiModelProperty(value = "角色描述")
+    private String roleDesc;
 
-    @ApiModelProperty(value = "测试")
-    private String menuDesc;
-
-    @ApiModelProperty(value = "测试")
+    @ApiModelProperty(value = "是否启用")
     private Boolean enable;
 
     @ApiModelProperty(value = "创建时间")

@@ -12,9 +12,8 @@ import org.joda.time.format.DateTimeFormatter;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
+import java.time.*;
+import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.Date;
@@ -468,6 +467,118 @@ public class DateUtil extends DateUtils {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         return calendar.get(Calendar.DAY_OF_MONTH);
+    }
+
+    public static void main(String[] args) {
+        //LocalDate 年月日
+        //获取当前年月日（2020-06-05）
+        LocalDate localDate = LocalDate.now();
+        System.out.println("获取当前年月日:" + localDate);
+        //构造指定的年月日
+        LocalDate localDate1 = LocalDate.of(2020, 06, 04);
+        System.out.println("构造指定的年月日:" + localDate1);
+        //构造 天数转换LocalDate
+        LocalDate localDate2 = LocalDate.ofEpochDay(1000);
+        System.out.println("构造 天数转换LocalDate:" + localDate2);
+        //构造 年、天数、天数转换月加天
+        LocalDate localDate3 = LocalDate.ofYearDay(1999, 50);
+        System.out.println("构造 年、天数、天数转换月加天:" + localDate3);
+        //获取数字年、采用方法
+        int year = localDate.getYear();
+        System.out.println("获取数字年、采用方法:" + year);
+        //获取数字年、采用入参
+        int year1 = localDate.get(ChronoField.YEAR);
+        System.out.println("获取数字年、采用入参:" + year1);
+        //获取英文月份、采用方法
+        Month month = localDate.getMonth();
+        System.out.println("获取英文月份、采用方法:" + month);
+        //获取数字月份、采用入参
+        int month1 = localDate.get(ChronoField.MONTH_OF_YEAR);
+        System.out.println("获取数字月份、采用入参:" + month1);
+        //获取数字天、采用方法
+        int day = localDate.getDayOfMonth();
+        System.out.println("获取数字天、采用方法:" + day);
+        //获取数字天、采用入参
+        int day1 = localDate.get(ChronoField.DAY_OF_MONTH);
+        System.out.println("获取数字天、采用入参:" + day1);
+        //获取星期几英文、采用方法
+        DayOfWeek dayOfWeek = localDate.getDayOfWeek();
+        System.out.println("获取星期几英文、采用方法:" + dayOfWeek);
+        //获取星期几数字、采用入参
+        int dayOfWeek1 = localDate.get(ChronoField.DAY_OF_WEEK);
+        System.out.println("获取星期几数字、采用入参:" + dayOfWeek1);
+
+        //LocalTime 时分秒
+        //获取时分秒毫秒
+        LocalTime localTime = LocalTime.now();
+        System.out.println("获取时分秒:"+localTime);
+        //na秒转时间
+        LocalTime localTime1 = LocalTime.ofNanoOfDay(1000);
+        System.out.println("na秒转时间:"+localTime1);
+        //秒转时间
+        LocalTime localTime2 = LocalTime.ofSecondOfDay(1000);
+        System.out.println("秒转时间:"+localTime2);
+        //构造指定时间
+        LocalTime localTime3 = LocalTime.of(13, 3, 3);
+        System.out.println("构造指定时间:"+localTime3);
+        //获取小时
+        int hour = localTime.getHour();
+        int hour1 = localTime.get(ChronoField.HOUR_OF_DAY);
+        System.out.println("获取小时:" + hour + "&" + hour1);
+        //获取分钟
+        int minute = localTime.getMinute();
+        int minute1 = localTime.get(ChronoField.MINUTE_OF_HOUR);
+        System.out.println("获取分钟:" + minute + "&" + minute1);
+        //获取秒
+        int second = localTime.getSecond();
+        int second1 = localTime.get(ChronoField.SECOND_OF_MINUTE);
+        System.out.println("获取秒:" + second + "&" + second1);
+
+        //LocalDateTime 获取年月日时分秒，等于LocalDate+LocalTime
+        LocalDateTime localDateTime = LocalDateTime.now();
+        System.out.println("获取年月日时分秒:"+ localDateTime);
+        LocalDateTime localDateTime1 = LocalDateTime.of(2019, Month.SEPTEMBER, 10, 14, 46, 56);
+        System.out.println("构建年月日时分秒:"+ localDateTime1);
+        LocalDateTime localDateTime2 = LocalDateTime.of(localDate, localTime);
+        System.out.println("构建年月日时分秒:"+ localDateTime2);
+        LocalDateTime localDateTime3 = localDate.atTime(localTime);
+        System.out.println("构建年月日时分秒:"+ localDateTime3);
+        LocalDateTime localDateTime4 = localTime.atDate(localDate);
+        System.out.println("构建年月日时分秒:"+ localDateTime4);
+        //获取LocalDate
+        LocalDate localDate4 = localDateTime.toLocalDate();
+        System.out.println(localDate4);
+        //获取LocalTime
+        LocalTime localTime4 = localDateTime.toLocalTime();
+        System.out.println(localTime4);
+
+        //创建Instant对象
+        Instant instant = Instant.now();
+        //获取秒数
+        long currentSecond = instant.getEpochSecond();
+        System.out.println("获取秒数:" + currentSecond);
+        //获取毫秒数
+        long currentMilli = instant.toEpochMilli();
+        System.out.println("获取毫秒数:"+currentMilli);
+        System.out.println("获取毫秒数:"+System.currentTimeMillis());
+
+        //LocalDate、LocalTime、LocalDateTime、Instant为不可变对象，修改这些对象对象会返回一个副本
+        //增加、减少年数、月数、天数等，以LocalDateTime为例
+        LocalDateTime localDateTime5 = LocalDateTime.of(2019, Month.SEPTEMBER, 10,
+                14, 46, 56);
+        //增加一年
+        localDateTime5 = localDateTime5.plusYears(1);
+        localDateTime5 = localDateTime5.plus(1, ChronoUnit.YEARS);
+        //减少一个月
+        localDateTime5 = localDateTime5.minusMonths(1);
+        localDateTime5 = localDateTime5.minus(1, ChronoUnit.MONTHS);
+
+        //通过with修改某些值   还可以修改月、日
+        //修改年为2019
+        localDateTime = localDateTime.withYear(2020);
+        //修改为2022
+        localDateTime = localDateTime.with(ChronoField.YEAR, 2022);
+
     }
 
 }

@@ -25,7 +25,7 @@ import java.util.Date;
 @Getter
 @ToString
 @TableName(value = "gsp_menu")
-public class GspMenu implements Serializable {
+public class GspMenu implements Comparable<GspMenu>,Serializable {
 
     @ApiModelProperty(value = "id", required = true)
     @TableId(value = "id", type = IdType.AUTO)
@@ -52,4 +52,8 @@ public class GspMenu implements Serializable {
     @ApiModelProperty(value = "更新时间")
     private Date updateTime;
 
+    @Override
+    public int compareTo(GspMenu o) {
+        return this.id.compareTo(o.getId());
+    }
 }

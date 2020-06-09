@@ -38,7 +38,7 @@ public class SemaphoreDemo {
 
         for (int i = 0; i < THREAD_COUNT; i++) {
             final int threadnum = i;
-            threadPool.execute(() -> {
+            threadPool.submit(() -> {
                 try {
                     //获取许可
                     semaphore.acquire();

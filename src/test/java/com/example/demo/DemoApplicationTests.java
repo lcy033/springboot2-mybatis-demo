@@ -14,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 
@@ -50,6 +51,8 @@ public class DemoApplicationTests {
 	@Test
 	public void findListByName(){
 		List<GspMenu> gspMenu = gspMenuMapper.findListByName("name");
+		//排序
+		Collections.sort(gspMenu);
 		log.info("结果：{}", gspMenu);
 	}
 

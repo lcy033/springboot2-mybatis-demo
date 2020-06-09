@@ -18,7 +18,7 @@ import java.util.Date;
 @Getter
 @ToString
 @TableName(value = "gsp_role")
-public class GspRole implements Serializable {
+public class GspRole implements Comparable<GspRole>,Serializable {
 
     @ApiModelProperty(value = "id", required = true)
     @TableId(value = "id", type = IdType.AUTO)
@@ -42,4 +42,14 @@ public class GspRole implements Serializable {
     @ApiModelProperty(value = "更新时间")
     private Date updateTime;
 
+    /**
+     * 排序
+     * Collections.sort(list);
+     * @param o
+     * @return
+     */
+    @Override
+    public int compareTo(GspRole o) {
+        return this.id.compareTo(o.getId());
+    }
 }

@@ -2,6 +2,7 @@ package com.example.controller;
 
 import com.example.model.GspRole;
 import com.example.model.base.ResponseVo;
+import com.example.service.GspMenuService;
 import com.example.service.HomeService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,9 @@ public class HomeController {
 
     @Autowired
     private HomeService homeService;
+
+    @Autowired
+    private GspMenuService gspMenuService;
 
 
     @GetMapping("/")
@@ -30,6 +34,12 @@ public class HomeController {
     @ApiOperation(value = "查询信息", httpMethod = "GET", response = ResponseVo.class, produces = "application/json;charset=UTF-8")
     public ResponseVo<GspRole> find(@RequestParam(name = "id") Long id){
         return homeService.find(id);
+    }
+
+    @PostMapping("/v1/test")
+    @ApiOperation(value = "test", httpMethod = "POST", response = ResponseVo.class, produces = "application/json;charset=UTF-8")
+    public ResponseVo<String> test(){
+        return gspMenuService.updateGspMenu();
     }
 
 }

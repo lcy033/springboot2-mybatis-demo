@@ -4,8 +4,8 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.example.mapper.GspMenuMapper;
 import com.example.model.GspMenu;
 import com.example.model.base.ResponseVo;
-import io.swagger.models.auth.In;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.RandomUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import sun.misc.BASE64Encoder;
-
-import java.sql.Wrapper;
 
 /**
  * Created by finup on 2018/12/11.
@@ -27,9 +25,9 @@ public class GspMenuService {
 
     @Autowired
     private GspMenuMapper gspMenuMapper;
-
     @Autowired
     private GspMenu1Service gspMenu1Service;
+    private ThreadLocal<Long> number = new ThreadLocal<>();
 
     /**
      * 查找数据
@@ -82,32 +80,42 @@ public class GspMenuService {
 
     //cas 数据库操作
     @Transactional(rollbackFor = Exception.class)
-    public void updateGspMenu(){
+    public ResponseVo<String> updateGspMenu(){
         int result = 0;
         Long id = 14L;
         GspMenu gm = gspMenuMapper.selectById(id);
         LOGGER.info("第一次查询信息:{}", gm);
         try {
-            Thread.sleep(10000);
+            Thread.sleep(1000 + RandomUtils.nextLong(100L, 1000L));
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
         GspMenu gspMenu = new GspMenu();
         gspMenu.setMenuName("1111");
-        gspMenu.setMenuFatherId(gm.getMenuFatherId() + 1);
         while (result != 1){
+            number.set(0L);
             LOGGER.info("修改失败开始循环");
+            gspMenu.setMenuFatherId(gm.getMenuFatherId() + 1);
             result = gspMenuMapper.update(gspMenu, new UpdateWrapper<GspMenu>().lambda().eq(GspMenu::getId, id).eq(GspMenu::getMenuFatherId, gm.getMenuFatherId()));
             if (result != 1){
+
+                try {
+                    number.set(number.get() + 1000L + RandomUtils.nextLong(100L, 1000L));
+                    Thread.sleep(number.get());
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
                 gm = gspMenu1Service.findGspMenu(id);
                 LOGGER.info("第二次查询信息:{}", gm);
-
             }
 //            result = gspMenu1Service.newUpdateGspMenu(id);
 //            LOGGER.info("第二次更新结果:{}", result);
         }
+        number.remove();
         LOGGER.info("修改成功退出循环");
+        return ResponseVo.ofSuccess();
     }
 
     /**

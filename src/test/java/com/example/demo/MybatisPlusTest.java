@@ -104,4 +104,18 @@ public class MybatisPlusTest {
 		log.info("result:{}", result);
 	}
 
+	@Test
+	public void count(){
+		GspMenu gspMenu = new GspMenu();
+		gspMenu.setMenuName("dddd");
+		gspMenu.setMenuUrl("ddddd");
+		int result = gspMenuMapper.update(gspMenu, new UpdateWrapper<GspMenu>().lambda()
+				.eq(GspMenu::getMenuName, "ssss"));
+
+		Wrapper<GspMenu> wrapper = new QueryWrapper<GspMenu>().lambda().eq(GspMenu::getMenuName, "ssss");
+		int count = gspMenuMapper.selectCount(wrapper);
+
+		log.info("result:{}", result);
+	}
+
 }

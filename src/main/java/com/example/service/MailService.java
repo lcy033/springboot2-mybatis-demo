@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class MailService {
 
-    private static String[] PRODUCT_SEND_TO_EMAIL = {"", ""};
+    private static String[] PRODUCT_SEND_TO_EMAIL = {"785613839@qq.com"};
 
     private static String[] TEXT_SEND_TO_EMAIL = {"", "", "", ""};
 

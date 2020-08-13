@@ -10,6 +10,7 @@ import java.lang.annotation.Target;
  * Created by lcy on 2019/11/20.
  * @author lcy
  */
+//用于描述注解的使用范围（即：被描述的注解可以用在什么地方）
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface AuthChecker {

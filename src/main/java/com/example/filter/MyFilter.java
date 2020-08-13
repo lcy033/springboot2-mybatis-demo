@@ -32,8 +32,9 @@ public class MyFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         log.info("myFilter1 begin");
         try {
-            log.info("业务方法执行");
+            log.info("业务方法执行doFilter之前");
             filterChain.doFilter(servletRequest, servletResponse);
+            log.info("业务方法执行doFilter之后");
         } catch (Exception e) {
             log.error("error!", e);
         }

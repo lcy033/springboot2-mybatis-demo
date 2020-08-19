@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.example.mapper.GspMenuMapper;
 import com.example.model.GspMenu;
+import com.example.service.MailService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
@@ -25,6 +26,9 @@ public class MybatisPlusTest {
 
 	@Autowired
 	private GspMenuMapper gspMenuMapper;
+
+	@Autowired
+	private MailService mailService;
 
 	@Test
 	public void testSelect(){
@@ -116,6 +120,12 @@ public class MybatisPlusTest {
 		int count = gspMenuMapper.selectCount(wrapper);
 
 		log.info("result:{}", result);
+	}
+
+	@Test
+	public void sendSimpleMail(){
+		//发送邮件
+		mailService.sendSimpleMail(true, "title", "content");
 	}
 
 }

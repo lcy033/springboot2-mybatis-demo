@@ -58,8 +58,8 @@ public class RedisTest {
 
     @Test
     public void testJedis() {
-        Jedis jedis = new Jedis("127.0.0.1", 6379);//设置地址和端口
-        jedis.auth("test123");//如果redis服务器配置了需要密码，此处必须设置
+        Jedis jedis = new Jedis("172.16.12.252", 6379);//设置地址和端口
+//        jedis.auth("test123");//如果redis服务器配置了需要密码，此处必须设置
 
 //        Jedis jedis = new Jedis("r-2zebe1v34r5ocbaoih.redis.rds.aliyuncs.com", 6379);//设置地址和端口
 //        jedis.auth("oHUr#^VvWRLkI9rv");//如果redis服务器配置了需要密码，此处必须设置

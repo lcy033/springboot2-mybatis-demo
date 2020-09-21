@@ -8,7 +8,7 @@ import java.util.Queue;
  */
 public class LiShuan {
 
-    public static String test(TreeNode treeNodes){
+    public static String test(TreeNode treeNodes) {
         int l = 0;
         int r = 0;
 
@@ -17,25 +17,25 @@ public class LiShuan {
             queue.add(treeNodes);
         }
 
-        while (!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             TreeNode treeNode = queue.poll();
-            if (treeNode.getLeft() != null){
-                l = l +1;
+            if (treeNode.getLeft() != null) {
+                l = l + 1;
                 queue.add(treeNode.getLeft());
             }
 
-            if (treeNode.getRight() != null){
-                r = r +1;
+            if (treeNode.getRight() != null) {
+                r = r + 1;
                 queue.add(treeNode.getRight());
             }
 
         }
 
-        if (l > r + 1 || r > l + 1){
-            return "不是"+ l + ":" + r;
+        if (l > r + 1 || r > l + 1) {
+            return "不是" + l + ":" + r;
         }
 
-        return "是"+ l + ":" + r;
+        return "是" + l + ":" + r;
     }
 
     public static void main(String[] args) {
@@ -45,5 +45,15 @@ public class LiShuan {
         treeNode.setLeft(treeNode1);
         treeNode.setRight(treeNode2);
         System.out.println(LiShuan.test(treeNode));
+        System.out.printf("浮点型变量的的值为 " +
+                "%f, 整型变量的值为 " +
+                " %d, 字符串变量的值为 " +
+                "is %s", 1.22f, 33, "stringVar");
+        String fs = String.format("浮点型变量的的值为 " +
+                "%f, 整型变量的值为 " +
+                " %d, 字符串变量的值为 " +
+                "is %s", 1.22f, 33, "stringVar");
+        System.out.println(fs);
     }
+
 }

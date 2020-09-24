@@ -9,9 +9,9 @@ import java.util.concurrent.*;
 public class ThreadTest {
 
     public static void main(String[] args) {
-        int corePoolSize = 2;
-        int maximumPoolSize = 3;
-        long keepAliveTime = 10;
+        int corePoolSize = 4;
+        int maximumPoolSize = 5;
+        long keepAliveTime = 30;
         TimeUnit unit = TimeUnit.SECONDS;
         BlockingQueue<Runnable> workQueue = new ArrayBlockingQueue<>(2);
         ThreadFactory threadFactory = new NameTreadFactory();

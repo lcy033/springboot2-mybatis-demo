@@ -1,8 +1,8 @@
 package com.example.test;
 
-import cn.hutool.core.io.file.FileWriter;
 import cn.hutool.http.HttpUtil;
-import com.alibaba.fastjson.JSONArray;
+import com.example.threadPollExecutorCase.MyIgnorePolicy;
+import com.example.threadPollExecutorCase.NameTreadFactory;
 import com.example.utils.QRCodeUtils;
 import jodd.io.FileUtil;
 
@@ -13,6 +13,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -29,42 +30,60 @@ public class Main {
 
     public static void main(String[] args) {
         try {
+            int corePoolSize = 4;
+            int maximumPoolSize = 5;
+            long keepAliveTime = 30;
+            TimeUnit unit = TimeUnit.SECONDS;
+            BlockingQueue<Runnable> workQueue = new ArrayBlockingQueue<>(2);
+            ThreadFactory threadFactory = new NameTreadFactory();
+            RejectedExecutionHandler handler = new MyIgnorePolicy();
+            ThreadPoolExecutor executor = new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, unit,
+                    workQueue, threadFactory, handler);
+            executor.prestartAllCoreThreads(); // 预启动所有核心线程
+
             Main cm = new Main();
-            //获得html文本内容 首页
-            String html1 = cm.getHtml(URL_INDEX);
-            //获取A标签
-            List<String> aUrl = cm.getAUrl(html1);
-            //获取a标签url
-            List<String> aSrc = cm.getImageSrc(aUrl);
-            for (String s : aSrc){
-                if (!s.endsWith("html")){
-                    continue;
-                }
-                //获得html文本内容
-                String html = cm.getHtml(s);
-                //获取当前页面图片标签
-                List<String> imgUrl = cm.getImageUrl(html);
-                //获取当前页面A标签 分页
-                List<String> a1Url = cm.getAUrl(html);
-                List<String> aSrc2 = cm.getImageSrc(a1Url);
-                for (String s1 : aSrc2){
-                    if (!s.endsWith("html")){
-                        continue;
-                    }
-                    //获得html文本内容
-                    String html2 = cm.getHtml(s1);
-                    List<String> imgUrl1 = cm.getImageUrl(html2);
-                    if (!imgUrl1.isEmpty()){
-                        imgUrl.addAll(imgUrl1);
-                    }
-                }
+            for (int i = 1; i < 15; i++) {
+                int finalI = i;
+                executor.execute(()->{
+                    String urlIndex = "http://www.jzb.com/bbs/forum-809-"+ finalI + ".html";
+                    System.out.println(urlIndex);
+                    //获得html文本内容 首页
+                    String html1 = cm.getHtml(urlIndex);
+                    //获取A标签
+                    List<String> aUrl = cm.getAUrl(html1);
+                    //获取a标签url
+                    List<String> aSrc = cm.getImageSrc(aUrl);
+                    for (String s : aSrc){
+                        if (!s.endsWith("html")){
+                            continue;
+                        }
+                        //获得html文本内容
+                        String html = cm.getHtml(s);
+                        //获取当前页面图片标签
+                        List<String> imgUrl = cm.getImageUrl(html);
+                        //获取当前页面A标签 分页
+                        List<String> a1Url = cm.getAUrl(html);
+                        List<String> aSrc2 = cm.getImageSrc(a1Url);
+                        for (String s1 : aSrc2){
+                            if (!s.endsWith("html")){
+                                continue;
+                            }
+                            //获得html文本内容
+                            String html2 = cm.getHtml(s1);
+                            List<String> imgUrl1 = cm.getImageUrl(html2);
+                            if (!imgUrl1.isEmpty()){
+                                imgUrl.addAll(imgUrl1);
+                            }
+                        }
 
 
-                //获取图片src地址
-                List<String> imgSrc = cm.getImageSrc(imgUrl);
-                //下载图片
-                cm.download(imgSrc);
-                System.out.println(s);
+                        //获取图片src地址
+                        List<String> imgSrc = cm.getImageSrc(imgUrl);
+                        //下载图片
+                        cm.download(imgSrc);
+                        System.out.println(s);
+                    }
+                });
             }
 
         } catch (Exception e) {

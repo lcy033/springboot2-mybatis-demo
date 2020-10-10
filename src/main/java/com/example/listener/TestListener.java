@@ -16,8 +16,8 @@ import java.util.Random;
 @Component
 public class TestListener {
 
-    @RabbitHandler
-    @RabbitListener(queues = "queue.test.new.test")
+//    @RabbitHandler
+//    @RabbitListener(queues = "queue.test.new.test")
     public void queueTest(Message message){
         log.info(JSON.toJSONString("接收到消息:" + message));
     }

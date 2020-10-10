@@ -76,7 +76,6 @@ public class Main {
                             }
                         }
 
-
                         //获取图片src地址
                         List<String> imgSrc = cm.getImageSrc(imgUrl);
                         //下载图片

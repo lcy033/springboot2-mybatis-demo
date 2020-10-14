@@ -437,4 +437,11 @@ public class CalculationUtil {
     public static Double format(BigDecimal v) {
         return v == null ? BigDecimal.ZERO.doubleValue() : v.doubleValue();
     }
+
+    public static void main(String[] args) {
+        double amount = 1 - 0.1;
+        BigDecimal b1 = new BigDecimal(amount);
+        BigDecimal b2 = BigDecimal.valueOf(amount);
+        System.out.println(b1.compareTo(b2));
+    }
 }

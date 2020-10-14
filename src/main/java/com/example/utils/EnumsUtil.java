@@ -51,7 +51,6 @@ public class EnumsUtil {
      * @return
      */
     public static boolean inEnums(Enum target, Enum... sources) {
-
         for (Enum source : sources) {
             if (target == source) {
                 return true;
@@ -60,5 +59,5 @@ public class EnumsUtil {
         return false;
 
     }
-
+    
 }

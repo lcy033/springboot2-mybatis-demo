@@ -143,6 +143,28 @@ public class SortUtils {
     }
 
     /**
+     *
+     * @param arr 要二分搜索的数组
+     * @param key 要查找的关键字
+     * @param start 起始索引
+     * @param end 结尾索引
+     * @return 若搜索到这个元素，则返回数组的索引下标；否则返回-1
+     */
+    private static int binary1(int[] arr, int key, int start, int end){
+        if (start <= end){
+            int mid = (start + end) / 2;
+            if (arr[mid] > key) {
+                return binary1(arr, key, start, mid - 1);
+            } else if (arr[mid] < key) {
+                return binary1(arr, key, mid + 1, end);
+            } else {
+                return mid;
+            }
+        }
+        return -1;
+    }
+
+    /**
      * 提取数字
      * 如果字符串中出现连续的 数字 则认为 字符相等
      * 123abc12b1234  12abc1b123 出现连续字符串 123

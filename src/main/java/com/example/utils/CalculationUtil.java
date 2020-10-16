@@ -1,6 +1,9 @@
 package com.example.utils;
 
+import com.google.common.collect.Lists;
+
 import java.math.BigDecimal;
+import java.util.*;
 
 /**
  * 数字计算工具类
@@ -439,9 +442,18 @@ public class CalculationUtil {
     }
 
     public static void main(String[] args) {
-        double amount = 1 - 0.1;
-        BigDecimal b1 = new BigDecimal(amount);
-        BigDecimal b2 = BigDecimal.valueOf(amount);
-        System.out.println(b1.compareTo(b2));
+//        int[] arr = {2, 3, 4, 1, 6, 5};
+//        for (int i = 0; i < arr.length - 1; i++) {
+//            for (int j = i + 1; j < arr.length; j++) {
+//                if (arr[i] > arr[j]) {
+//                    int tmp = arr[i];
+//                    arr[i] = arr[j];
+//                    arr[j] = tmp;
+//                }
+//            }
+//        }
+//        System.out.println(Arrays.toString(arr));
+
+        
     }
 }

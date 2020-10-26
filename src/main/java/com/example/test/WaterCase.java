@@ -44,8 +44,11 @@ public class WaterCase {
      * @return
      */
     private String getWater(int index, int[] nums){
+        if (index <= 0){
+            return "柱子数量异常";
+        }
         if (index > nums.length){
-            System.out.println("超出柱子数量");
+            return "超出柱子数量";
         }
         int num = nums[index];
         //获取左侧跟右侧最高的柱子取最低的一根然后减去当前柱子的高度

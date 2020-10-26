@@ -30,8 +30,8 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            int corePoolSize = 4;
-            int maximumPoolSize = 5;
+            int corePoolSize = 5;
+            int maximumPoolSize = 10;
             long keepAliveTime = 30;
             TimeUnit unit = TimeUnit.SECONDS;
             BlockingQueue<Runnable> workQueue = new ArrayBlockingQueue<>(2);

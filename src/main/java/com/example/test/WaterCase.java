@@ -65,10 +65,9 @@ public class WaterCase {
     }
 
     public static void main(String[] args) {
-        int[] nums = {5, 7, 5, 2, 4, 2, 4, 5};
+        int[] nums = {2, 7, 5, 2, 4, 6, 4, 5};
         WaterCase waterCase = new WaterCase();
         String result = waterCase.getWater(8, nums);
         System.out.println(result);
-
     }
 }

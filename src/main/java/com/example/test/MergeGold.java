@@ -13,7 +13,7 @@ public class MergeGold {
             return 0;
         }
 
-        //大于等于10 金额
+        //小于等于10 金额
         double a = 0.1;
         //超过10个每块金额
         double b = 0.005;
@@ -59,7 +59,8 @@ public class MergeGold {
         list.add(1d);
         list.add(1d);
         list.add(1d);
-        System.out.println(MergeGold.mergeGold(list, 9));
+        list.add(1d);
+        System.out.println(MergeGold.mergeGold(list, 2));
 
     }
 }

@@ -454,26 +454,26 @@ public class CalculationUtil {
 //            }
 //        }
 //        System.out.println(Arrays.toString(arr));
-//        int[] arr = {2, 3, 4, 1, 6, 5};
-//        int[] arr1 = new int[arr.length + 1];
-//        int j = 0;
-//        for (int i = 0; i < arr.length; i++) {
-//            if (i == 3){
-//                arr1[j] = 9;
-//                j += 1;
-//            }
-//            arr1[j] = arr[i];
-//            j++;
-//        }
-//        System.out.println(Arrays.toString(arr1));
+        int[] arr = {2, 3, 4, 1, 6, 5};
+        int[] arr1 = new int[arr.length + 1];
+        int j = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (i == 3){
+                arr1[j] = 9;
+                j += 1;
+            }
+            arr1[j] = arr[i];
+            j++;
+        }
+        System.out.println(Arrays.toString(arr1));
 
-        char[] arr = new char[26];
-        for (int i = 0; i < 26; i++) {
-            arr[i] = (char) ('A' + i);
-        }
-        for (char c : arr){
-            System.out.println(c);
-        }
+//        char[] arr = new char[26];
+//        for (int i = 0; i < 26; i++) {
+//            arr[i] = (char) ('A' + i);
+//        }
+//        for (char c : arr){
+//            System.out.println(c);
+//        }
 
 //        System.out.println(Arrays.toString(arr));
     }

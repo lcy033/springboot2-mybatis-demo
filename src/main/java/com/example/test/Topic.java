@@ -8,7 +8,11 @@ import java.util.*;
 
 public class Topic {
 
+
+
+
     private static int getMin(int[] arr){
+
         if (arr == null || arr.length <= 0){
             return -1;
         }
@@ -240,6 +244,12 @@ public class Topic {
 //                }
 //            }
 //        }
+
+        ArrayList<String> arrayList = new ArrayList();
+        arrayList.add("");
+        arrayList.size();
+        arrayList.remove(0);
+        arrayList.remove("");
 
     }
 

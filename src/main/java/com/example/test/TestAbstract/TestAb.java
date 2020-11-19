@@ -2,6 +2,8 @@ package com.example.test.TestAbstract;
 
 public class TestAb extends AbstractTest {
 
+    private int i;
+
     TestAb(){
         super();
     }
@@ -14,6 +16,11 @@ public class TestAb extends AbstractTest {
     @Override
     String getS1(String s) {
         return null;
+    }
+
+    String getI(){
+        String i1 = null;
+        return i1;
     }
 
 

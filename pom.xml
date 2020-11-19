@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.1.7.RELEASE</version>
+		<version>2.1.9.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
@@ -173,6 +173,30 @@
 			<artifactId>core</artifactId>
 			<version>3.3.3</version>
 		</dependency>
+		<!-- nacos boot依赖 -->
+<!--		<dependency>-->
+<!--			<groupId>com.alibaba.boot</groupId>-->
+<!--			<artifactId>nacos-config-spring-boot-starter</artifactId>-->
+<!--			<version>0.2.7</version>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>com.alibaba.boot</groupId>-->
+<!--			<artifactId>nacos-discovery-spring-boot-starter</artifactId>-->
+<!--			<version>0.2.7</version>-->
+<!--		</dependency>-->
+		<!-- nacos cloud依赖 -->
+		<!-- https://mvnrepository.com/artifact/com.alibaba.cloud/spring-cloud-starter-alibaba-nacos-config -->
+		<dependency>
+			<groupId>com.alibaba.cloud</groupId>
+			<artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+			<version>2.1.0.RELEASE</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.alibaba.cloud/spring-cloud-starter-alibaba-nacos-discovery -->
+		<dependency>
+			<groupId>com.alibaba.cloud</groupId>
+			<artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+			<version>2.1.0.RELEASE</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -183,6 +207,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
 
 </project>

@@ -61,8 +61,10 @@ public class DecodeBase64Aspect {
                 }
             } else {
                 // 获取obj类的字节文件对象
-                Class c = rvt.getClass();
-                this.changeVariable(c, values, rvt);
+                if (rvt != null){
+                    Class c = rvt.getClass();
+                    this.changeVariable(c, values, rvt);
+                }
             }
         }
         log.info("解密,结束请求参数 : {}", JSON.toJSONString(rvt));

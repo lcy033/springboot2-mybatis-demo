@@ -5,6 +5,7 @@ import com.example.exception.extend.BusinessException;
 import com.example.model.base.ResponseVo;
 import com.example.service.MailService;
 import com.example.utils.DateUtil;
+import com.example.utils.LogUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,10 +53,10 @@ public class ErrorControllerAdvice {
             boolean product = true;
             //todo 判断测试环境还是生产可以根据不同的结果发送
             String environment = product ? "生产环境" : "测试环境";
-            String title = environment + "[个贷APP]时间:" + DateUtil.getDateTimePatternConnect();
+            String title = environment + "[测试项目]时间:" + DateUtil.getDateTimePatternConnect();
             try {
                 String body = IOUtils.toString(request.getInputStream(),request.getCharacterEncoding());
-                String content = title + ",方法:" + requestUri + ",参数:" + body + ",token:" + token;
+                String content = title + ",方法:" + requestUri + ",参数:" + body + ",token:" + token + ",messaget:" + LogUtils.getTrace(ex);
                 log.info("预警,请求参数 : {}", content);
                 //发送邮件
                 mailService.sendSimpleMail(product, title, content);

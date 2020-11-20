@@ -10,6 +10,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 /**
  * Created by finup on 2018/12/11.
  */
@@ -26,12 +28,14 @@ public class GspMenuController {
     @PostMapping("/v1/find")
     @ApiOperation(value = "查询信息", httpMethod = "POST", response = ResponseVo.class, produces = "application/json;charset=UTF-8")
     public ResponseVo<GspMenu> findGspMenuPost(@RequestBody GspMenu gspMenu){
+        Map<String, String> map = null;
         return gspMenuService.findGspMenu(gspMenu.getId());
     }
 
     @GetMapping("/v1/find/{id}")
     @ApiOperation(value = "查询信息", httpMethod = "GET", response = ResponseVo.class, produces = "application/json;charset=UTF-8")
     public ResponseVo<GspMenu> findGspMenuGet(@RequestParam(name = "id") Long id){
+        Map<String, String> map = null;
         return gspMenuService.findGspMenu(id);
     }
 

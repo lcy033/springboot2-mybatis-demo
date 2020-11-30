@@ -1,19 +1,19 @@
 package com.example.test;
 
+import com.example.test.chushihua.Son;
 import io.swagger.models.auth.In;
 import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
+import java.util.concurrent.BlockingDeque;
 
 public class Topic {
 
 
+    private static int getMin(int[] arr) {
 
-
-    private static int getMin(int[] arr){
-
-        if (arr == null || arr.length <= 0){
+        if (arr == null || arr.length <= 0) {
             return -1;
         }
         int min = arr[0];
@@ -25,8 +25,8 @@ public class Topic {
         return min;
     }
 
-    private static void reversal(int[] arr){
-        if (arr == null || arr.length <= 0){
+    private static void reversal(int[] arr) {
+        if (arr == null || arr.length <= 0) {
             return;
         }
         int j = arr.length - 1;
@@ -73,13 +73,13 @@ public class Topic {
         }
     }
 
-    private static int binary(int[] arr, int key){
+    private static int binary(int[] arr, int key) {
         if (arr == null || arr.length <= 0) {
             return -1;
         }
         int start = 0;
         int end = arr.length - 1;
-        while (start <= end){
+        while (start <= end) {
             int mid = (start + end) / 2;
             if (arr[mid] > key) {
                 end = mid - 1;
@@ -92,11 +92,11 @@ public class Topic {
         return -1;
     }
 
-    private static int binary(int[] arr, int key, int start, int end){
+    private static int binary(int[] arr, int key, int start, int end) {
         if (arr == null || arr.length <= 0) {
             return -1;
         }
-        if (start <= end){
+        if (start <= end) {
             int mid = (start + end) / 2;
             if (arr[mid] > key) {
                 return binary(arr, key, start, mid - 1);
@@ -169,7 +169,7 @@ public class Topic {
         if (arr.length == 0) {
             return true;
         }
-        if (arr.length != arr1.length){
+        if (arr.length != arr1.length) {
             return false;
         }
         for (int i = 0; i < arr.length; i++) {
@@ -190,20 +190,20 @@ public class Topic {
         }
     }
 
-    private static int getRabbitNum(int month){
-        if (month < 0){
+    private static int getRabbitNum(int month) {
+        if (month < 0) {
             return -1;
         }
-        if (month < 3){
+        if (month < 3) {
             return 2;
         }
         int[] arr = new int[month];
         arr[0] = 2;
         arr[1] = 2;
         for (int i = 2; i < arr.length; i++) {
-            arr[i] = arr[i-1] + arr[i-2];
+            arr[i] = arr[i - 1] + arr[i - 2];
         }
-        return arr[month-1];
+        return arr[month - 1];
     }
 
     public static void main(String[] args) {
@@ -244,12 +244,6 @@ public class Topic {
 //                }
 //            }
 //        }
-
-        ArrayList<String> arrayList = new ArrayList();
-        arrayList.add("");
-        arrayList.size();
-        arrayList.remove(0);
-        arrayList.remove("");
 
     }
 

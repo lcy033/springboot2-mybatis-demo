@@ -1,6 +1,6 @@
 package com.example.test;
 
-public interface Inner {
+public abstract interface Inner {
 
     void show();
 }

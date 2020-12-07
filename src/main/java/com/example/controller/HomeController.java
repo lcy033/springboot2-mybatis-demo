@@ -21,6 +21,9 @@ import springfox.documentation.spring.web.json.Json;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.mappers.ServiceModelToSwagger2Mapper;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -108,6 +111,54 @@ public class HomeController {
             System.out.println(api);
             // 保存
         }
+    }
+
+    @GetMapping(
+            value = "/getApi")
+    public Object getApi(
+            @RequestParam(value = "group", required = false) String swaggerGroup) {
+        String groupName = java.util.Optional.ofNullable(swaggerGroup).orElse(Docket.DEFAULT_GROUP_NAME);
+        Documentation documentation = documentationCache.documentationByGroup(groupName);
+        documentationCache.all();
+        if (documentation == null) {
+            return new ResponseEntity<Json>(HttpStatus.NOT_FOUND);
+        }
+        Swagger swagger = mapper.mapDocumentation(documentation);
+        List<Map<String, String>> list = new ArrayList<>();
+        for (Map.Entry<String, Path> item : swagger.getPaths().entrySet()) {
+            String path = item.getKey();
+            Path pathInfo = item.getValue();
+            Map<String, String> getMap = getMap(path, pathInfo.getGet(), HttpMethod.GET.name());
+            if (!getMap.isEmpty()){
+                list.add(getMap);
+            }
+            Map<String, String> postMap = getMap(path, pathInfo.getPost(), HttpMethod.POST.name());
+            if (!postMap.isEmpty()){
+                list.add(postMap);
+            }
+            Map<String, String> deleteMap = getMap(path, pathInfo.getDelete(), HttpMethod.DELETE.name());
+            if (!deleteMap.isEmpty()){
+                list.add(deleteMap);
+            }
+            Map<String, String> putMap = getMap(path, pathInfo.getPut(), HttpMethod.PUT.name());
+            if (!putMap.isEmpty()){
+                list.add(putMap);
+            }
+        }
+        return list;
+    }
+
+    private Map<String, String> getMap(String path, Operation operation, String method) {
+        Map<String, String> map = new HashMap<>();
+        if (operation == null) {
+            return map;
+        }
+        map.put("method", method);
+        map.put("operationId", operation.getOperationId());
+        map.put("path", path);
+        map.put("tag", operation.getTags().get(0));
+        map.put("summary", operation.getSummary());
+        return map;
     }
 
 

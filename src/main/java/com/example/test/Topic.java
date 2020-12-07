@@ -5,8 +5,11 @@ import io.swagger.models.auth.In;
 import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.BlockingDeque;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Topic {
 
@@ -206,8 +209,12 @@ public class Topic {
         return arr[month - 1];
     }
 
+    public static <T> T test(T t) {
+        return t;
+    }
+
     public static void main(String[] args) {
-        int[] arr = {2, 3, 4, 1, -6, 5};
+//        int[] arr = {2, 3, 4, 1, -6, 5};
 //        int min = Topic.getMin(arr);
 //        System.out.println(min);
 
@@ -245,6 +252,13 @@ public class Topic {
 //            }
 //        }
 
+//        Map<String, String> map = new Hashtable<>();
+        Map<String, String> map = new HashMap<>();
+        map.put("key", "value");
+        map.get("key");
+        map.remove("key");
+
     }
+
 
 }

@@ -57,7 +57,6 @@ public class EnumsUtil {
             }
         }
         return false;
-
     }
     
 }

@@ -2,9 +2,6 @@ package com.example.vo;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
-import java.io.Serializable;
-import java.util.Date;
-
 /**
  * Created by finup on 2018/12/10.
  */

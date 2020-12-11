@@ -252,12 +252,6 @@ public class Topic {
 //            }
 //        }
 
-//        Map<String, String> map = new Hashtable<>();
-        Map<String, String> map = new HashMap<>();
-        map.put("key", "value");
-        map.get("key");
-        map.remove("key");
-
     }
 
 

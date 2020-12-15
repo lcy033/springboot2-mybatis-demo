@@ -61,10 +61,7 @@ public class HomeController {
     @Autowired
     ServiceModelToSwagger2Mapper mapper;
 
-    @RequestMapping(
-            value = "/api/updateApi",
-            method = RequestMethod.GET)
-    @ResponseBody
+    @RequestMapping(value = "/api/updateApi", method = RequestMethod.GET)
     public ResponseEntity<Json> updateApi(
             @RequestParam(value = "group", required = false) String swaggerGroup) {
 
@@ -77,7 +74,7 @@ public class HomeController {
         String groupName = Optional.fromNullable(swaggerGroup).or(Docket.DEFAULT_GROUP_NAME);
         Documentation documentation = documentationCache.documentationByGroup(groupName);
         if (documentation == null) {
-            return new ResponseEntity<Json>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         Swagger swagger = mapper.mapDocumentation(documentation);
 
@@ -92,14 +89,14 @@ public class HomeController {
             createApiIfNeeded(apiMap, path,  pathInfo.getDelete(), HttpMethod.DELETE.name());
             createApiIfNeeded(apiMap, path,  pathInfo.getPut(), HttpMethod.PUT.name());
         }
-        return new ResponseEntity<Json>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     private void createApiIfNeeded(Map<String, Boolean> apiMap, String path, Operation operation, String method) {
         if(operation==null) {
             return;
         }
-        if(!apiMap.containsKey(path+ method)){
+        if(!apiMap.containsKey(path + method)){
             apiMap.put(path+ method,true);
 
             BackendApi api = new BackendApi();

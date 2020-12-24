@@ -62,8 +62,7 @@ public class HomeController {
     ServiceModelToSwagger2Mapper mapper;
 
     @RequestMapping(value = "/api/updateApi", method = RequestMethod.GET)
-    public ResponseEntity<Json> updateApi(
-            @RequestParam(value = "group", required = false) String swaggerGroup) {
+    public ResponseEntity<Json> updateApi(@RequestParam(value = "group", required = false) String swaggerGroup) {
 
         // 加载已有的api
 //        Map<String,Boolean> apiMap = Maps.newHashMap();

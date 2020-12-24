@@ -509,4 +509,17 @@ public class FileUtil {
         return outStream.toByteArray();
     }
 
+    public static void main(String[] args) {
+        try (FileInputStream in = new FileInputStream("/Users/finup/Desktop/test/test.jpg");
+             FileOutputStream out = new FileOutputStream("/Users/finup/Desktop/test/test1.jpg")) {
+            byte[] b = new byte[1024];
+            int l;
+            while ((l = in.read(b)) != -1) {
+                out.write(b, 0, l);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

@@ -2,6 +2,7 @@ package com.example.test;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Vector;
 
 /**
  * Created by finup on 2019/9/2.
@@ -64,6 +65,9 @@ public class BFSWithQueue {
         treeNode1.setRight(treeNode3);
         BFSWithQueue.BFSWithQueue1(treeNode1);
         BFSWithQueue.BFSWithQueue2(treeNode1);
+
+        Vector vector = new Vector();
+        vector.add("ddd");
     }
 
 }

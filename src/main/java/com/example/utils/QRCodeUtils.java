@@ -58,4 +58,22 @@ public class QRCodeUtils {
         }
         return content;
     }
+
+    private static int sum(int i) {
+        if (i <= 0) {
+            return 0;
+        } else {
+            return (i + sum(i - 1));
+        }
+    }
+
+
+    public static void main(String[] args) {
+        File f = new File("/Users/finup/Desktop");
+        for(File temp : f.listFiles()) {
+            if(temp.isFile()) {
+                System.out.println(temp.getName());
+            }
+        }
+    }
 }

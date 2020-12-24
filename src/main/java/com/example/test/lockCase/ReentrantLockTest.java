@@ -15,8 +15,8 @@ public class ReentrantLockTest {
     private Condition condition = lock.newCondition();
 
     private void add() {
+        lock.lock();
         try {
-            lock.lock();
             while (num != 0) {
                 condition.await();
             }
@@ -25,14 +25,14 @@ public class ReentrantLockTest {
             condition.signalAll();
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             lock.unlock();
         }
     }
 
     private void get() {
+        lock.lock();
         try {
-            lock.lock();
             while (num == 0) {
                 condition.await();
             }
@@ -41,7 +41,7 @@ public class ReentrantLockTest {
             condition.signalAll();
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             lock.unlock();
         }
     }

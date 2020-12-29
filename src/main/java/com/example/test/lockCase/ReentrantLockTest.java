@@ -48,7 +48,6 @@ public class ReentrantLockTest {
 
     public static void main(String[] args) {
         ReentrantLockTest reentrantLockTest = new ReentrantLockTest();
-
         for (int i = 0; i < 5; i++) {
             new Thread(()->{
                 reentrantLockTest.add();
@@ -60,7 +59,6 @@ public class ReentrantLockTest {
                 reentrantLockTest.get();
             }, "B").start();
         }
-
 
     }
 

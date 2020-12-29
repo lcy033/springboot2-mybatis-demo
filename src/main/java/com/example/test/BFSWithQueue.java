@@ -1,8 +1,9 @@
 package com.example.test;
 
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Vector;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
  * Created by finup on 2019/9/2.
@@ -68,6 +69,12 @@ public class BFSWithQueue {
 
         Vector vector = new Vector();
         vector.add("ddd");
+
+        List list = Collections.synchronizedList(new ArrayList<>());
+        Map map = Collections.synchronizedMap(new HashMap<>());
+
+        List l = new CopyOnWriteArrayList();
+        Set s = new CopyOnWriteArraySet();
     }
 
 }

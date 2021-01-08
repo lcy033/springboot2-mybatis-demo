@@ -7,6 +7,9 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 @Slf4j
 @Service
 public class MailService {
@@ -39,5 +42,14 @@ public class MailService {
         } catch (Exception e) {
             log.info("异常邮件提醒发送异常:" + e);
         }
+    }
+
+    public static void main(String[] args) {
+        ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+        System.out.println(classLoader);//AppClassLoader
+        ClassLoader classLoader1 = classLoader.getParent();
+        System.out.println(classLoader1);//ExtClassLoader
+        ClassLoader classLoader2 = classLoader1.getParent();
+        System.out.println(classLoader2);//null
     }
 }

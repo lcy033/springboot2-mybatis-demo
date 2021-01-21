@@ -132,7 +132,7 @@ public class RedisTest {
                 //打开目录
                 .openOutputDir(true)
                 //文件类型
-                .fileType(EngineFileType.MD).customTemplate("")
+                .fileType(EngineFileType.HTML).customTemplate("")
                 //生成模板实现
                 .produceType(EngineTemplateType.freemarker).build();
 

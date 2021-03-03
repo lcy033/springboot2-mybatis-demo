@@ -15,4 +15,5 @@ public class RabbitConfig {
     public Queue testQueue(){
         return new Queue("queue.test.new.test");
     }
+
 }

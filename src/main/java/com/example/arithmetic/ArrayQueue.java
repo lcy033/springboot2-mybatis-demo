@@ -63,7 +63,6 @@ public class ArrayQueue {
         System.out.println(arrayQueue.enqueue("4"));
         System.out.println(arrayQueue.dequeue());
         System.out.println(arrayQueue.dequeue());
-
     }
 
 }

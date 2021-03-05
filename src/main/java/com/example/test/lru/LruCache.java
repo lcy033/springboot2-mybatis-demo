@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 /**
  * 设计和实现一个  LRU (最近最少使用) 缓存机制。它应该支持以下操作： 获取数据 get 和 写入数据 put
+ * 双向链表
  */
 public class LruCache {
     //方便通过key快速定位结点

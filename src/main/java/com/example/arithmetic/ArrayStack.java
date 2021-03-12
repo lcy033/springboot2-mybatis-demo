@@ -25,8 +25,12 @@ public class ArrayStack {
 
     // 入栈操作
     public boolean push(String item) {
-        if (count == num){
-            return false;
+        // 动态扩容
+        if (count == num) {
+            String[] old = items;
+            items = new String[num * 2];
+            System.arraycopy(old, 0, items, 0, num);
+            num = num * 2;
         }
         items[count] = item;
         ++count;
@@ -50,6 +54,7 @@ public class ArrayStack {
         System.out.println(arrayStack.push("2"));
         System.out.println(arrayStack.push("3"));
         System.out.println(arrayStack.push("4"));
+        System.out.println(arrayStack.push("5"));
         System.out.println(arrayStack.pop());
         System.out.println(arrayStack.pop());
         System.out.println(arrayStack.pop());

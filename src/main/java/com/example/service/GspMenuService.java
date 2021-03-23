@@ -113,6 +113,7 @@ public class GspMenuService {
 //            result = gspMenu1Service.newUpdateGspMenu(id);
 //            LOGGER.info("第二次更新结果:{}", result);
         }
+//        gm = gspMenuMapper.selectById(id);
 //        gm = gspMenu1Service.findGspMenu1(id);
         number.remove();
         LOGGER.info("修改成功退出循环");

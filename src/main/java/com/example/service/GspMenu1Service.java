@@ -47,7 +47,7 @@ public class GspMenu1Service {
         return gspMenuMapper.selectById(id);
     }
 
-    @Transactional(rollbackFor = Exception.class, isolation = Isolation.READ_COMMITTED)
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public GspMenu findGspMenu1(Long id) {
         return gspMenuMapper.selectById(id);
     }

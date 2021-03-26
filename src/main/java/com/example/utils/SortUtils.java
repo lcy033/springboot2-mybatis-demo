@@ -1,5 +1,6 @@
 package com.example.utils;
 
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,6 +13,7 @@ public class SortUtils {
      * 冒泡 时间O(n2) 空间O(1)
      */
     private static void sort1(int[] arr) {
+        int s = 0;
         for (int i = 0; i < arr.length-1; i++){
             for (int j = i+1; j < arr.length; j++){
                 //和后一个数相比，比它大就交换
@@ -20,14 +22,17 @@ public class SortUtils {
                     arr[i] = arr[j];
                     arr[j] = tmp;
                 }
+                s += 1;
             }
         }
+        System.out.println("循环"+ s);
     }
 
     /**
      * 冒泡V2 时间O(n2) 空间O(1)
      */
     private static void sort1V2(int[] arr) {
+        int s = 0;
         for (int i = 0; i < arr.length; i++){
             //有序标记，每一轮的初始是true
             boolean isSorted = true;
@@ -40,11 +45,13 @@ public class SortUtils {
                     //有元素交换，所以不是有序，标记变为false
                     isSorted = false;
                 }
+                s += 1;
             }
             if (isSorted){
                 break;
             }
         }
+        System.out.println("循环"+ s);
     }
 
     private static void sort(int array[]) {
@@ -67,12 +74,12 @@ public class SortUtils {
         }
     }
 
-    // 插入排序，a 表示数组，n 表示数组大小
-    public void insertionSort(int[] a, int n) {
-        if (n <= 1) {
+    // 插入排序，a 表示数组
+    public static void insertionSort(int[] a) {
+        if (a.length <= 1) {
             return;
         }
-        for (int i = 1; i < n; i++) {
+        for (int i = 1; i < a.length; i++) {
             int value = a[i];
             int j = i - 1;
             // 查找插入的位置
@@ -214,14 +221,14 @@ public class SortUtils {
     }
 
     public static void main(String[] args) {
-        String s1 = "123abc12b1234";
-        String s2 = "2abc4b23";
-        String a1 = getN(s1);
-        String a2 = getN(s2);
-        String n1 = a1.length() > a2.length() ? a2 : a1;
-        String n2 = a1.length() > a2.length() ? a1 : a2;
-        //n1短 n2长
-        System.out.println(getNumber(n1, n2));
+//        String s1 = "123abc12b1234";
+//        String s2 = "2abc4b23";
+//        String a1 = getN(s1);
+//        String a2 = getN(s2);
+//        String n1 = a1.length() > a2.length() ? a2 : a1;
+//        String n2 = a1.length() > a2.length() ? a1 : a2;
+//        //n1短 n2长
+//        System.out.println(getNumber(n1, n2));
 
 //        int[] arr1 = {1,6,22,2,4,9};
 //        sort1(arr1);
@@ -244,5 +251,11 @@ public class SortUtils {
 //        int index2 = binary(arr, 66, 0, arr.length - 1);
 //        System.out.println(index1);
 //        System.out.println(index2);
+        int[] arr = {3,1,4,2,5};
+        insertionSort(arr);
+        System.out.println(Arrays.toString(arr));
+//        sort1(arr);
+//        sort1V2(arr);
+
     }
 }

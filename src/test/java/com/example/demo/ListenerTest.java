@@ -23,10 +23,12 @@ public class ListenerTest {
 
     @Test
     public void sender() throws Exception{
-        String message = "hello word";
-        log.info("发送消息：" + message);
-        rabbitTemplate.convertAndSend("queue.test.new.test", message);
-        TimeUnit.SECONDS.sleep(60);
+        for (int i = 0; i < 10000; i++) {
+            String message = "hello word" + i;
+            log.info("发送消息：" + message);
+            rabbitTemplate.convertAndSend("queue.test.new.test", message);
+            TimeUnit.SECONDS.sleep(1);
+        }
     }
 
 }

@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,6 +44,11 @@ public class GspMenu1Service {
 
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
     public GspMenu findGspMenu(Long id) {
+        return gspMenuMapper.selectById(id);
+    }
+
+    @Transactional(isolation = Isolation.READ_COMMITTED)
+    public GspMenu findGspMenu1(Long id) {
         return gspMenuMapper.selectById(id);
     }
 }

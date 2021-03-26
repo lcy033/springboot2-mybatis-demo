@@ -41,7 +41,7 @@ public class TestListener {
 
     public static void main(String[] args) {
         double remainMoney = 100;
-        for (int i = 2; i > 0; i--){
+        for (int i = 10; i > 0; i--){
             double j =  getMoney(i, remainMoney);
             remainMoney = remainMoney - j;
             System.out.println("第" + i + "位，抢到" + j);

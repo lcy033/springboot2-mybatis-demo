@@ -75,7 +75,7 @@ public class SortUtils {
     }
 
     // 插入排序，a 表示数组
-    public static void insertionSort(int[] a) {
+    private static void insertionSort(int[] a) {
         if (a.length <= 1) {
             return;
         }

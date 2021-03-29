@@ -76,13 +76,16 @@ public class SortUtils {
 
     /**
      * 插入排序，a 表示数组
+     * 分为两个区域，有序、无序
      */
     private static void insertionSort(int[] a) {
         if (a.length <= 1) {
             return;
         }
         for (int i = 1; i < a.length; i++) {
+            // 需要交换的元素
             int value = a[i];
+            // 第一个元素认为有序
             int j = i - 1;
             // 查找插入的位置
             for (; j >= 0; j--) {
@@ -253,7 +256,7 @@ public class SortUtils {
 //        int index2 = binary(arr, 66, 0, arr.length - 1);
 //        System.out.println(index1);
 //        System.out.println(index2);
-        int[] arr = {3,1,4,2,5};
+        int[] arr = {3,2,1};
         insertionSort(arr);
         System.out.println(Arrays.toString(arr));
 //        sort1(arr);

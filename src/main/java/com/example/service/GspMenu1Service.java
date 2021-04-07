@@ -24,7 +24,7 @@ public class GspMenu1Service {
     private GspMenuMapper gspMenuMapper;
 
 
-    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
+//    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
     public void addGspMenu1(){
         GspMenu gspMenu = new GspMenu();
         gspMenu.setMenuName("C");

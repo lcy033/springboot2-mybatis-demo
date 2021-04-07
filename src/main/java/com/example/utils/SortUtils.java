@@ -101,6 +101,29 @@ public class SortUtils {
         }
     }
 
+    /**
+     * 希尔排序(移位)
+     * 简单插入排序的优化
+     */
+    private static void shellSort(int[] array) {
+        //控制步长，每循环一次就除二
+        for (int n = array.length / 2; n > 0; n /= 2) {
+            //从下标为步长的元素开始，依次向后循环
+            //不用担心前面的元素，因为下面j层的循环，会依次和前面的数字进行比较。
+            for (int i = n; i < array.length; i++) {
+                // 从下标为[步长]的数字开始，向前 隔一个步长 进行比较
+                // 如果后一个比前一个小，则交换，如果不是，则返回上一层循环，
+                // i+1后再进行【如果后一个比前一个小，则交换】的比较
+                // 之后j-n，再和一开始位置的两个步长距离的数字进行比较
+                // 如此反复
+                for (int j = i; j > 0 && j - n >= 0 && array[j] < array[j - n]; j -= n) {
+                    int temp = array[j];
+                    array[j] = array[j - n];
+                    array[j - n] = temp;
+                }
+            }
+        }
+    }
 
     /**
      * 选择 时间O(n2) 空间O(1)
@@ -121,6 +144,54 @@ public class SortUtils {
                 arr[minIndex] = tmp;
             }
         }
+    }
+
+    /*
+     * 首先需要一个数组存放所有的数据
+     * 定一个开始位置和一个结束为止
+     * 选择一个数作为准基数
+     */
+    public static void sort(int a[],int min,int max) {
+        int key = a[min];//准基数
+        int start = min; //开始位置
+        int end = max;//结束位置
+
+        while (end > start) {  //循环条件是否数值交叉
+            //从后开始往前查找
+            while (end > start && a[end] >= key) {
+                //如果找到的值大于基数值，那么继续往下找，end--
+                end--;
+            }
+            //如果找到的值小于基数值，那么进行值交换
+            if (a[end] < key) {
+                int i = a[end];
+                a[end] = a[start];
+                a[start] = i;
+
+            }
+
+            //从前往后找
+            while (end > start && a[start] <= key) {
+                //如果找到的值小于基数值，那么继续往下找，start++
+                start++;
+            }
+            //如果找到的值大于基数值，那么进行值交换
+            if (a[start] > key) {
+                int i = a[start];
+                a[start] = a[end];
+                a[end] = i;
+
+            }
+        }
+        //这部分的数据都是小于准基数，通过递归在进行一趟快排
+        if (start > min) {
+            sort(a, min, start - 1);  //开始位置为第一位，结束位置为关键索引-1
+        }
+
+        if (end < max) {
+            sort(a, end + 1, max);  //开始位置为关键索引+1，结束位置最后一位
+        }
+
     }
 
     /**
@@ -257,7 +328,7 @@ public class SortUtils {
 //        System.out.println(index1);
 //        System.out.println(index2);
         int[] arr = {3,2,1};
-        insertionSort(arr);
+        shellSort(arr);
         System.out.println(Arrays.toString(arr));
 //        sort1(arr);
 //        sort1V2(arr);

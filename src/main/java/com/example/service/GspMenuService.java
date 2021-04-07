@@ -60,7 +60,6 @@ public class GspMenuService {
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
-
         gspMenu.setMenuName("B");
         gspMenuMapper.insert(gspMenu);
 

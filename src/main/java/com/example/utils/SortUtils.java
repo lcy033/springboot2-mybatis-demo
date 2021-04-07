@@ -14,10 +14,10 @@ public class SortUtils {
      */
     private static void sort1(int[] arr) {
         int s = 0;
-        for (int i = 0; i < arr.length-1; i++){
-            for (int j = i+1; j < arr.length; j++){
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = i + 1; j < arr.length; j++) {
                 //和后一个数相比，比它大就交换
-                if (arr[i] > arr[j]){
+                if (arr[i] > arr[j]) {
                     int tmp = arr[i];
                     arr[i] = arr[j];
                     arr[j] = tmp;
@@ -25,7 +25,7 @@ public class SortUtils {
                 s += 1;
             }
         }
-        System.out.println("循环"+ s);
+        System.out.println("循环" + s);
     }
 
     /**
@@ -33,12 +33,12 @@ public class SortUtils {
      */
     private static void sort1V2(int[] arr) {
         int s = 0;
-        for (int i = 0; i < arr.length; i++){
+        for (int i = 0; i < arr.length; i++) {
             //有序标记，每一轮的初始是true
             boolean isSorted = true;
-            for (int j = 0; j < arr.length - i - 1; j++){
+            for (int j = 0; j < arr.length - i - 1; j++) {
                 //和后一个数相比，比它大就交换
-                if (arr[j] > arr[j + 1]){
+                if (arr[j] > arr[j + 1]) {
                     int tmp = arr[j];
                     arr[j] = arr[j + 1];
                     arr[j + 1] = tmp;
@@ -47,11 +47,11 @@ public class SortUtils {
                 }
                 s += 1;
             }
-            if (isSorted){
+            if (isSorted) {
                 break;
             }
         }
-        System.out.println("循环"+ s);
+        System.out.println("循环" + s);
     }
 
     private static void sort(int array[]) {
@@ -151,7 +151,7 @@ public class SortUtils {
      * 定一个开始位置和一个结束为止
      * 选择一个数作为准基数
      */
-    public static void sort(int a[],int min,int max) {
+    public static void sort(int a[], int min, int max) {
         int key = a[min];//准基数
         int start = min; //开始位置
         int end = max;//结束位置
@@ -222,15 +222,14 @@ public class SortUtils {
     }
 
     /**
-     *
-     * @param arr 要二分搜索的数组
-     * @param key 要查找的关键字
+     * @param arr   要二分搜索的数组
+     * @param key   要查找的关键字
      * @param start 起始索引
-     * @param end 结尾索引
+     * @param end   结尾索引
      * @return 若搜索到这个元素，则返回数组的索引下标；否则返回-1
      */
-    private static int binary(int[] arr, int key, int start, int end){
-        while (start <= end){
+    private static int binary(int[] arr, int key, int start, int end) {
+        while (start <= end) {
             int mid = (start + end) / 2;
             if (arr[mid] > key) {
                 end = mid - 1;
@@ -244,15 +243,14 @@ public class SortUtils {
     }
 
     /**
-     *
-     * @param arr 要二分搜索的数组
-     * @param key 要查找的关键字
+     * @param arr   要二分搜索的数组
+     * @param key   要查找的关键字
      * @param start 起始索引
-     * @param end 结尾索引
+     * @param end   结尾索引
      * @return 若搜索到这个元素，则返回数组的索引下标；否则返回-1
      */
-    private static int binary1(int[] arr, int key, int start, int end){
-        if (start <= end){
+    private static int binary1(int[] arr, int key, int start, int end) {
+        if (start <= end) {
             int mid = (start + end) / 2;
             if (arr[mid] > key) {
                 return binary1(arr, key, start, mid - 1);
@@ -266,21 +264,68 @@ public class SortUtils {
     }
 
     /**
+     * 基数排序 高位优先法
+     *
+     * @param arr 待排序列，必须为自然数
+     */
+    private static void radixSort(int[] arr) {
+        //待排序列最大值
+        int max = arr[0];
+        int exp;//指数
+
+        //计算最大值
+        for (int anArr : arr) {
+            if (anArr > max) {
+                max = anArr;
+            }
+        }
+
+        //从个位开始，对数组进行排序
+        for (exp = 1; max / exp > 0; exp *= 10) {
+            //存储待排元素的临时数组
+            int[] temp = new int[arr.length];
+            //分桶个数
+            int[] buckets = new int[10];
+
+            //将数据出现的次数存储在buckets中
+            for (int value : arr) {
+                //(value / exp) % 10 :value的最底位(个位)
+                buckets[(value / exp) % 10]++;
+            }
+
+            //更改buckets[i]，
+            for (int i = 1; i < 10; i++) {
+                buckets[i] += buckets[i - 1];
+            }
+
+            //将数据存储到临时数组temp中
+            for (int i = arr.length - 1; i >= 0; i--) {
+                temp[buckets[(arr[i] / exp) % 10] - 1] = arr[i];
+                buckets[(arr[i] / exp) % 10]--;
+            }
+
+            //将有序元素temp赋给arr
+            System.arraycopy(temp, 0, arr, 0, arr.length);
+        }
+
+    }
+
+    /**
      * 提取数字
      * 如果字符串中出现连续的 数字 则认为 字符相等
      * 123abc12b1234  12abc1b123 出现连续字符串 123
      * 123abc12b1234  2abc4b23 最后的输出结果
      */
-    private static String getNumber(String n1, String n2){
+    private static String getNumber(String n1, String n2) {
         String[] list1 = n1.split(",");
         String[] list2 = n2.split(",");
         for (int i = 0; i < list1.length; i++) {
-            if (list1[i] == null){
+            if (list1[i] == null) {
                 continue;
             }
             String max = null;
             for (int j = 0; j < list2.length; j++) {
-                if (list2[i] == null){
+                if (list2[i] == null) {
                     continue;
                 }
 
@@ -290,7 +335,7 @@ public class SortUtils {
     }
 
     private static String getN(String str) {
-        String regEx="[^0-9]";
+        String regEx = "[^0-9]";
         Pattern p = Pattern.compile(regEx);
         Matcher m = p.matcher(str);
         return m.replaceAll(",").trim();
@@ -327,11 +372,14 @@ public class SortUtils {
 //        int index2 = binary(arr, 66, 0, arr.length - 1);
 //        System.out.println(index1);
 //        System.out.println(index2);
-        int[] arr = {3,2,1};
-        shellSort(arr);
-        System.out.println(Arrays.toString(arr));
+        int[] arr = {3, 2, 1};
+//        shellSort(arr);
+//        System.out.println(Arrays.toString(arr));
 //        sort1(arr);
 //        sort1V2(arr);
+
+        radixSort(arr);
+        System.out.println(Arrays.toString(arr));
 
     }
 }

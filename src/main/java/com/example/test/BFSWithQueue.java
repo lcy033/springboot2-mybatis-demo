@@ -1,16 +1,16 @@
 package com.example.test;
 
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
  * Created by finup on 2019/9/2.
  */
 public class BFSWithQueue {
 
-    //使用Queue实现BFS
+
+    /**
+     * 使用Queue实现BFS 层级遍历二叉树
+     */
     private static void BFSWithQueue1(TreeNode root) {
         Queue<TreeNode> queue = new LinkedList<>();
         if (root != null) {
@@ -33,6 +33,7 @@ public class BFSWithQueue {
 
     /**
      * 反转二叉
+     *
      * @param root
      */
     private static void BFSWithQueue2(TreeNode root) {
@@ -58,23 +59,84 @@ public class BFSWithQueue {
         }
     }
 
+    /**
+     * 前序
+     */
+    static void beOrder(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        System.out.println(root.val + " ");
+        beOrder(root.left);
+        beOrder(root.right);
+    }
+
+    /**
+     * 中序
+     */
+    static void inOrder(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        inOrder(root.left);
+        System.out.println(root.val + " ");
+        inOrder(root.right);
+    }
+
+    /**
+     * 后续
+     */
+    static void afOrder(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        afOrder(root.left);
+        afOrder(root.right);
+        System.out.println(root.val + " ");
+    }
+
+    /**
+     * 层级
+     */
+    static void postOrder(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        postOrder(root.left);
+        postOrder(root.right);
+        System.out.println(root.val + " ");
+    }
+
     public static void main(String[] args) {
         TreeNode treeNode1 = new TreeNode(1);
         TreeNode treeNode2 = new TreeNode(2);
         TreeNode treeNode3 = new TreeNode(3);
+        TreeNode treeNode4 = new TreeNode(4);
+        TreeNode treeNode5 = new TreeNode(5);
+        TreeNode treeNode6 = new TreeNode(6);
         treeNode1.setLeft(treeNode2);
         treeNode1.setRight(treeNode3);
+        treeNode2.setLeft(treeNode4);
+        treeNode4.setLeft(treeNode5);
+        treeNode3.setRight(treeNode6);
+
+//        BFSWithQueue.beOrder(treeNode1);
+//        BFSWithQueue.inOrder(treeNode1);
+//        BFSWithQueue.afOrder(treeNode1);
+
+
+
         BFSWithQueue.BFSWithQueue1(treeNode1);
-        BFSWithQueue.BFSWithQueue2(treeNode1);
-
-        Vector vector = new Vector();
-        vector.add("ddd");
-
-        List list = Collections.synchronizedList(new ArrayList<>());
-        Map map = Collections.synchronizedMap(new HashMap<>());
-
-        List l = new CopyOnWriteArrayList();
-        Set s = new CopyOnWriteArraySet();
+//        BFSWithQueue.BFSWithQueue2(treeNode1);
+//
+//        Vector vector = new Vector();
+//        vector.add("ddd");
+//
+//        List list = Collections.synchronizedList(new ArrayList<>());
+//        Map map = Collections.synchronizedMap(new HashMap<>());
+//
+//        List l = new CopyOnWriteArrayList();
+//        Set s = new CopyOnWriteArraySet();
     }
 
 }

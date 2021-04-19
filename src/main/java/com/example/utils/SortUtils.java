@@ -228,7 +228,7 @@ public class SortUtils {
      * @param end   结尾索引
      * @return 若搜索到这个元素，则返回数组的索引下标；否则返回-1
      */
-    private static int binary(int[] arr, int key, int start, int end) {
+    private static int binarySearch(int[] arr, int key, int start, int end) {
         while (start <= end) {
             int mid = (start + end) / 2;
             if (arr[mid] > key) {
@@ -250,17 +250,17 @@ public class SortUtils {
      * @return 若搜索到这个元素，则返回数组的索引下标；否则返回-1
      */
     private static int binary1(int[] arr, int key, int start, int end) {
-        if (start <= end) {
-            int mid = (start + end) / 2;
-            if (arr[mid] > key) {
-                return binary1(arr, key, start, mid - 1);
-            } else if (arr[mid] < key) {
-                return binary1(arr, key, mid + 1, end);
-            } else {
-                return mid;
-            }
+        if (start > end) {
+            return -1;
         }
-        return -1;
+        int mid = (start + end) / 2;
+        if (arr[mid] > key) {
+            return binary1(arr, key, start, mid - 1);
+        } else if (arr[mid] < key) {
+            return binary1(arr, key, mid + 1, end);
+        } else {
+            return mid;
+        }
     }
 
     /**
@@ -368,8 +368,8 @@ public class SortUtils {
 //        System.out.println(Arrays.toString(arr3));
 //
 //        int[] arr = { 11, 22, 33, 44, 55, 66, 77 };
-//        int index1 = binary(arr, 11, 0, arr.length - 1);
-//        int index2 = binary(arr, 66, 0, arr.length - 1);
+//        int index1 = binarySearch(arr, 11, 0, arr.length - 1);
+//        int index2 = binarySearch(arr, 66, 0, arr.length - 1);
 //        System.out.println(index1);
 //        System.out.println(index2);
         int[] arr = {3, 2, 1};

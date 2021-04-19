@@ -1,5 +1,6 @@
 package com.example.test;
 
+import java.util.ArrayList;
 import java.util.concurrent.CyclicBarrier;
 
 /**
@@ -30,6 +31,7 @@ public class CyclicBarrierTaskDemo extends Thread{
     }
 
     public static void main(String[] args) throws InterruptedException {
+        ArrayList list = new ArrayList();
 
         CyclicBarrier barrier = new CyclicBarrier(2, () -> System.out.println(Thread.currentThread().getName() + "完成最后的任务"));
 

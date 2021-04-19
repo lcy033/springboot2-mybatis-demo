@@ -12,4 +12,5 @@ public class LogUtils {
         StringBuffer buffer= stringWriter.getBuffer();
         return buffer.toString();
     }
+
 }

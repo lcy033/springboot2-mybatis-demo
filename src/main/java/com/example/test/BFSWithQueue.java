@@ -114,17 +114,22 @@ public class BFSWithQueue {
         TreeNode treeNode4 = new TreeNode(4);
         TreeNode treeNode5 = new TreeNode(5);
         TreeNode treeNode6 = new TreeNode(6);
+        TreeNode treeNode7 = new TreeNode(7);
+        TreeNode treeNode8 = new TreeNode(8);
         treeNode1.setLeft(treeNode2);
         treeNode1.setRight(treeNode3);
         treeNode2.setLeft(treeNode4);
-        treeNode4.setLeft(treeNode5);
-        treeNode3.setRight(treeNode6);
+        treeNode2.setRight(treeNode5);
+        treeNode3.setLeft(treeNode6);
+        treeNode3.setRight(treeNode7);
+        treeNode4.setLeft(treeNode8);
 
-//        BFSWithQueue.beOrder(treeNode1);
-//        BFSWithQueue.inOrder(treeNode1);
-//        BFSWithQueue.afOrder(treeNode1);
-
-
+        BFSWithQueue.beOrder(treeNode1);
+        System.out.println("......");
+        BFSWithQueue.inOrder(treeNode1);
+        System.out.println("......");
+        BFSWithQueue.afOrder(treeNode1);
+        System.out.println("......");
 
         BFSWithQueue.BFSWithQueue1(treeNode1);
 //        BFSWithQueue.BFSWithQueue2(treeNode1);

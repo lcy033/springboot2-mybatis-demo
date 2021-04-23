@@ -107,6 +107,99 @@ public class BFSWithQueue {
         System.out.println(root.val + " ");
     }
 
+    /**
+     * 二叉排序树、二叉查找树（查询）
+     */
+    static TreeNode find(TreeNode root, int data) {
+        TreeNode p = root;
+        while (p != null) {
+            if (data < p.val) {
+                p = p.left;
+            } else if (data > p.val) {
+                p = p.right;
+            } else {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 二叉查找树 插入
+     */
+    static void insert(TreeNode tree, int data) {
+        if (tree == null) {
+            tree = new TreeNode(data);
+            return;
+        }
+        TreeNode p = tree;
+        while (true) {
+            if (data > p.val) {
+                if (p.right == null) {
+                    p.right = new TreeNode(data);
+                    return;
+                }
+                p = p.right;
+            } else { // data < p.data =
+                if (p.left == null) {
+                    p.left = new TreeNode(data);
+                    return;
+                }
+                p = p.left;
+            }
+        }
+    }
+
+    /**
+     * 二叉查找树 删除
+     */
+    static void delete(TreeNode tree, int data) {
+        TreeNode p = tree; // p 指向要删除的节点，初始化指向根节点
+        TreeNode pp = null; // pp 记录的是 p 的父节点
+        while (p != null && p.val != data) {
+            pp = p;
+            if (data > p.val) {
+                p = p.right;
+            } else {
+                p = p.left;
+            }
+        }
+        if (p == null) {
+            return; // 没有找到
+        }
+
+        // 要删除的节点有两个子节点
+        if (p.left != null && p.right != null) { // 查找右子树中最小节点
+            TreeNode minP = p.right;
+            TreeNode minPP = p; // minPP 表示 minP 的父节点
+            while (minP.left != null) {
+                minPP = minP;
+                minP = minP.left;
+            }
+            p.val = minP.val; // 将 minP 的数据替换到 p 中
+            p = minP; // 下面就变成了删除 minP 了
+            pp = minPP;
+        }
+
+        // 删除节点是叶子节点或者仅有一个子节点
+        TreeNode child; // p 的子节点
+        if (p.left != null) {
+            child = p.left;
+        } else if (p.right != null) {
+            child = p.right;
+        } else {
+            child = null;
+        }
+
+        if (pp == null) {
+            tree = child; // 删除的是根节点
+        } else if (pp.left == p) {
+            pp.left = child;
+        } else {
+            pp.right = child;
+        }
+    }
+
     public static void main(String[] args) {
         TreeNode treeNode1 = new TreeNode(1);
         TreeNode treeNode2 = new TreeNode(2);
@@ -116,19 +209,22 @@ public class BFSWithQueue {
         TreeNode treeNode6 = new TreeNode(6);
         TreeNode treeNode7 = new TreeNode(7);
         TreeNode treeNode8 = new TreeNode(8);
-        treeNode1.setLeft(treeNode2);
-        treeNode1.setRight(treeNode3);
-        treeNode2.setLeft(treeNode4);
-        treeNode2.setRight(treeNode5);
-        treeNode3.setLeft(treeNode6);
-        treeNode3.setRight(treeNode7);
-        treeNode4.setLeft(treeNode8);
 
-        BFSWithQueue.beOrder(treeNode1);
+        treeNode5.setLeft(treeNode4);
+        treeNode5.setRight(treeNode6);
+        treeNode4.setLeft(treeNode3);
+        treeNode3.setLeft(treeNode2);
+        treeNode2.setLeft(treeNode1);
+        treeNode6.setRight(treeNode7);
+        treeNode7.setRight(treeNode8);
+
+        BFSWithQueue.delete(treeNode5, 7);
+
+        BFSWithQueue.beOrder(treeNode5);
         System.out.println("......");
-        BFSWithQueue.inOrder(treeNode1);
+        BFSWithQueue.inOrder(treeNode5);
         System.out.println("......");
-        BFSWithQueue.afOrder(treeNode1);
+        BFSWithQueue.afOrder(treeNode5);
         System.out.println("......");
 
         BFSWithQueue.BFSWithQueue1(treeNode1);

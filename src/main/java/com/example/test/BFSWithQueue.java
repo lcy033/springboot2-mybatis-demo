@@ -154,8 +154,10 @@ public class BFSWithQueue {
      * 二叉查找树 删除
      */
     static void delete(TreeNode tree, int data) {
-        TreeNode p = tree; // p 指向要删除的节点，初始化指向根节点
-        TreeNode pp = null; // pp 记录的是 p 的父节点
+        // p 指向要删除的节点，初始化指向根节点
+        TreeNode p = tree;
+        // pp 记录的是 p 的父节点
+        TreeNode pp = null;
         while (p != null && p.val != data) {
             pp = p;
             if (data > p.val) {
@@ -165,7 +167,8 @@ public class BFSWithQueue {
             }
         }
         if (p == null) {
-            return; // 没有找到
+            // 没有找到
+            return;
         }
 
         // 要删除的节点有两个子节点
@@ -200,6 +203,43 @@ public class BFSWithQueue {
         }
     }
 
+    /**
+     * 左旋转
+     */
+    private static void leftRotate(TreeNode tree){
+        // 创建新节点
+        TreeNode newTree = new TreeNode(tree.val);
+        // 把新的节点的左子树设置成当前节点的左子树
+        newTree.left = tree.left;
+        // 把新节点的右子树设置成当前节点的右子树的左子树
+        newTree.right = tree.right.left;
+        // 把当前节点的值替换成右子节点的值
+        tree.val = tree.right.val;
+        // 把当前节点的右子节点设置成右子树的右子树
+        tree.right = tree.right.right;
+        // 把当前节点的左子节点设置成新的节点
+        tree.left = newTree;
+    }
+
+
+    /**
+     * 右旋转
+     */
+    private static void rightRotate(TreeNode tree){
+        // 创建新的节点
+        TreeNode newTree = new TreeNode(tree.val);
+        // 把新的节点的右子树设置成当前节点的右子树
+        newTree.right = tree.right;
+        // 把新节点的左子树设置成当前节点的左子树的右子树
+        newTree.left = tree.left.right;
+        // 把当前节点的值替换成左子节点的值
+        tree.val = tree.left.val;
+        // 把当前节点的左子节点设置成左子树的左子树
+        tree.left = tree.left.left;
+        // 把当前节点的右子节点设置成新的节点
+        tree.right = newTree;
+    }
+
     public static void main(String[] args) {
         TreeNode treeNode1 = new TreeNode(1);
         TreeNode treeNode2 = new TreeNode(2);
@@ -208,27 +248,46 @@ public class BFSWithQueue {
         TreeNode treeNode5 = new TreeNode(5);
         TreeNode treeNode6 = new TreeNode(6);
         TreeNode treeNode7 = new TreeNode(7);
-        TreeNode treeNode8 = new TreeNode(8);
+//        TreeNode treeNode8 = new TreeNode(8);
+//        TreeNode treeNode9 = new TreeNode(9);
+//        TreeNode treeNode10 = new TreeNode(10);
 
         treeNode5.setLeft(treeNode4);
-        treeNode5.setRight(treeNode6);
         treeNode4.setLeft(treeNode3);
         treeNode3.setLeft(treeNode2);
         treeNode2.setLeft(treeNode1);
+
+        treeNode5.setRight(treeNode6);
         treeNode6.setRight(treeNode7);
-        treeNode7.setRight(treeNode8);
+//        treeNode7.setRight(treeNode8);
+//        treeNode8.setRight(treeNode9);
+//        treeNode9.setRight(treeNode10);
 
-        BFSWithQueue.delete(treeNode5, 7);
+//        BFSWithQueue.delete(treeNode5, 7);
 
-        BFSWithQueue.beOrder(treeNode5);
-        System.out.println("......");
-        BFSWithQueue.inOrder(treeNode5);
-        System.out.println("......");
-        BFSWithQueue.afOrder(treeNode5);
-        System.out.println("......");
+//        BFSWithQueue.beOrder(treeNode5);
+//        System.out.println("......");
+//        BFSWithQueue.inOrder(treeNode5);
+//        System.out.println("......");
+//        BFSWithQueue.afOrder(treeNode5);
+//        System.out.println("......");
 
-        BFSWithQueue.BFSWithQueue1(treeNode1);
+        System.out.println("最高" + treeNode5.height());
+        System.out.println("左" + treeNode5.leftHeight());
+        System.out.println("右" + treeNode5.rightHeight());
+        BFSWithQueue.BFSWithQueue1(treeNode5);
+        BFSWithQueue.rightRotate(treeNode5);
+//        BFSWithQueue.leftRotate(treeNode5);
+        System.out.println("......");
+//        BFSWithQueue.postOrder(treeNode5);
+        BFSWithQueue.BFSWithQueue1(treeNode5);
 //        BFSWithQueue.BFSWithQueue2(treeNode1);
+
+
+        System.out.println("最高" + treeNode5.height());
+        System.out.println("左" + treeNode5.leftHeight());
+        System.out.println("右" + treeNode5.rightHeight());
+
 //
 //        Vector vector = new Vector();
 //        vector.add("ddd");

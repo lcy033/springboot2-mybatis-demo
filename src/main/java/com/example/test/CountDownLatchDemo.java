@@ -2,6 +2,7 @@ package com.example.test;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Random;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -49,5 +50,18 @@ public class CountDownLatchDemo implements Runnable {
 
         HashMap map = new HashMap();
         map.put("s", "s");
+
+
+        String s = "a";
+        Map<String, String> map1 = new HashMap<>();
+        if(!s.equals("")){
+            map1.put("s", "s");
+        }else {
+            map1.put("s", "");
+        }
+
+        Optional.ofNullable(s).orElse("");
+
     }
+
 }

@@ -12,7 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import sun.misc.BASE64Encoder;
+
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by finup on 2018/12/11.
@@ -119,17 +124,74 @@ public class GspMenuService {
         return ResponseVo.ofSuccess();
     }
 
+//    /**
+//     * 加密仍数据库测试
+//     * @param args
+//     */
+//    public static void main(String[] args) {
+//        System.out.println(new BASE64Encoder().encode(String.valueOf("用户管理").getBytes()));
+//        System.out.println(new BASE64Encoder().encode(String.valueOf("角色管理").getBytes()));
+//        System.out.println(new BASE64Encoder().encode(String.valueOf("测试3").getBytes()));
+//        System.out.println(new BASE64Encoder().encode(String.valueOf("测试2").getBytes()));
+//        System.out.println(new BASE64Encoder().encode(String.valueOf("1111").getBytes()));
+//    }
+
     /**
-     * 加密仍数据库测试
+     * 爬虫
      * @param args
+     * @throws IOException
      */
-    public static void main(String[] args) {
-        System.out.println(new BASE64Encoder().encode(String.valueOf("用户管理").getBytes()));
-        System.out.println(new BASE64Encoder().encode(String.valueOf("角色管理").getBytes()));
-        System.out.println(new BASE64Encoder().encode(String.valueOf("测试3").getBytes()));
-        System.out.println(new BASE64Encoder().encode(String.valueOf("测试2").getBytes()));
-        System.out.println(new BASE64Encoder().encode(String.valueOf("1111").getBytes()));
-    }
+    public static void main(String[] args) throws IOException {
+            String url = "https://m.gmw.cn/baijia/2023-02/24/1303294325.html"; // 要爬取图片的网站地址
+            URL urlObj = new URL(url);
+            HttpURLConnection httpConn = (HttpURLConnection) urlObj.openConnection();
+            httpConn.setRequestMethod("GET");
+
+            // 获取HTML内容
+            BufferedReader in = new BufferedReader(new InputStreamReader(httpConn.getInputStream()));
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = in.readLine()) != null) {
+                sb.append(line);
+            }
+            in.close();
+
+            // 从HTML中提取图片链接
+            String regex = "<img[^>]+src\\s*=\\s*['\"]([^'\"]+)['\"][^>]*>";
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(sb.toString());
+            while (matcher.find()) {
+                String imgUrl = matcher.group(1); // 图片链接
+                System.out.println("图片链接：" + imgUrl);
+                if (!imgUrl.contains("http") || !imgUrl.contains("https") ){
+                    return;
+                }
+
+                // 下载图片并保存到本地
+                URL imgURL = new URL(imgUrl);
+                HttpURLConnection imgConn = (HttpURLConnection) imgURL.openConnection();
+                imgConn.setRequestMethod("GET");
+                int responseCode = imgConn.getResponseCode();
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    InputStream inputStream = imgConn.getInputStream();
+                    String fileName = imgUrl.substring(imgUrl.lastIndexOf("/") + 1); // 从链接中获取文件名
+//                    FileOutputStream outputStream = new FileOutputStream(fileName);
+                    FileOutputStream outputStream = new FileOutputStream("/Users/finup/Desktop/png/" + fileName);
+                    byte[] buffer = new byte[1024];
+                    int bytesRead = -1;
+                    while ((bytesRead = inputStream.read(buffer)) != -1) {
+                        outputStream.write(buffer, 0, bytesRead);
+                    }
+                    outputStream.close();
+                    inputStream.close();
+                    System.out.println("图片 " + fileName + " 下载完成");
+                } else {
+                    System.out.println("获取图片 " + imgUrl + " 失败，响应代码为 " + responseCode);
+                }
+            }
+        }
+
+
 
 
 }

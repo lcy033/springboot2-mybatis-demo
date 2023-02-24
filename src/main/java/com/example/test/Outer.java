@@ -19,6 +19,18 @@ public class Outer {
     }
 
     public static void main(String[] args) {
+        Outer.getString();
+//        System.out.println(Outer.getString());
+    }
 
+    public static String getString() {
+        try {
+            System.out.println("3");
+        } catch (Exception e) {
+            System.out.println("2");
+        } finally {
+            System.out.println("1");
+        }
+        return "1";
     }
 }

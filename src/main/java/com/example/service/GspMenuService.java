@@ -142,10 +142,11 @@ public class GspMenuService {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
-            String url = "https://m.gmw.cn/baijia/2023-02/24/1303294325.html"; // 要爬取图片的网站地址
+            String url = "https://mp.weixin.qq.com/s?__biz=MzUxMzk2Mjg2MA==&mid=2247530366&idx=3&sn=c1bc51c1872e8bb1d8af614cbaec6310&chksm=f94f117dce38986bfaf2493b152990e744e068fcb1e26016d84f61a60236fb48b16d7e196193&scene=27"; // 要爬取图片的网站地址
             URL urlObj = new URL(url);
             HttpURLConnection httpConn = (HttpURLConnection) urlObj.openConnection();
             httpConn.setRequestMethod("GET");
+            httpConn.setUseCaches(true);
 
             // 获取HTML内容
             BufferedReader in = new BufferedReader(new InputStreamReader(httpConn.getInputStream()));
@@ -160,8 +161,13 @@ public class GspMenuService {
             String regex = "<img[^>]+src\\s*=\\s*['\"]([^'\"]+)['\"][^>]*>";
             Pattern pattern = Pattern.compile(regex);
             Matcher matcher = pattern.matcher(sb.toString());
-            while (matcher.find()) {
+        int i = 0;
+        while (matcher.find()) {
+            i += 1;
                 String imgUrl = matcher.group(1); // 图片链接
+//                if (!imgUrl.contains("http") || !imgUrl.contains("https") ){
+//                    imgUrl = "https:" + imgUrl;
+//                }
                 System.out.println("图片链接：" + imgUrl);
                 if (!imgUrl.contains("http") || !imgUrl.contains("https") ){
                     return;
@@ -176,7 +182,7 @@ public class GspMenuService {
                     InputStream inputStream = imgConn.getInputStream();
                     String fileName = imgUrl.substring(imgUrl.lastIndexOf("/") + 1); // 从链接中获取文件名
 //                    FileOutputStream outputStream = new FileOutputStream(fileName);
-                    FileOutputStream outputStream = new FileOutputStream("/Users/finup/Desktop/png/" + fileName);
+                    FileOutputStream outputStream = new FileOutputStream("/Users/finup/Desktop/png/" + fileName + i);
                     byte[] buffer = new byte[1024];
                     int bytesRead = -1;
                     while ((bytesRead = inputStream.read(buffer)) != -1) {

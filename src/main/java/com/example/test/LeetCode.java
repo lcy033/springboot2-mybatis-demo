@@ -1,36 +1,13 @@
-package com.example.hutool;
+package com.example.test;
 
-import cn.hutool.core.convert.Convert;
-import cn.hutool.core.util.IdUtil;
-
+import java.util.Arrays;
 import java.util.HashMap;
 
-public class HuttoolCore {
-
-    public static void main(String[] args) {
-//        int a = 1;
-//        //aStr为"1"
-//        String aStr = Convert.toStr(a);
-//        System.out.println(aStr);
-//
-//        long[] b = {1, 2, 3, 4, 5};
-//        //bStr为："[1, 2, 3, 4, 5]"
-//        String bStr = Convert.toStr(b);
-//        System.out.println(bStr);
-
-        String[] b = { "1", "2", "3", "4" };
-//结果为Integer数组
-        Integer[] intArray = Convert.toIntArray(b);
-        System.out.println(intArray);
-        long[] c = {1,2,3,4,5};
-//结果为Integer数组
-        Integer[] intArray2 = Convert.toIntArray(c);
-        System.out.println(intArray2);
-        //生成的UUID是带-的字符串，类似于：a5c8a5e8-df2b-4706-bea4-08d0939410e3
-        String uuid = IdUtil.randomUUID();
-//生成的是不带-的字符串，类似于：b17f24ff026d40949c85a24f4f375d42
-        String simpleUUID = IdUtil.simpleUUID();
-    }
+/**
+ * @author : LCY
+ * @date : create in 2023/7/14 11:17 AM
+ */
+public class LeetCode {
 
     /**
      * 输入：nums = [2,7,11,15], target = 9
@@ -75,4 +52,12 @@ public class HuttoolCore {
         return result;
     }
 
+    public static void main(String[] args) {
+        int[] nums = { 2, 7, 11, 15, 3, 6, 8, 9, 10, 12, 13, 14, 16, 17, 18 };
+        int target = 35;
+        System.out.println(System.currentTimeMillis());
+        int[] result = twoSum1(nums, target);
+        System.out.println(System.currentTimeMillis());
+        System.out.println(Arrays.toString(result));
+    }
 }
